@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta.home.title">Arkan</title>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --font-sans: "Segoe UI", "Gill Sans", sans-serif; --font-display: Baskerville, "Times New Roman", serif; --paper: #f5ecdd; --paper-strong: #ecdfc9; --cream: #fff9f1; --ink: #231c16; --ink-soft: #655a4e; --olive: #667044; --amber: #b68128; --amber-strong: #d7a243; --line: rgba(35, 28, 22, 0.12); --card-line: rgba(35, 28, 22, 0.08); --shadow: 0 22px 54px rgba(66, 46, 18, 0.12); --shadow-soft: 0 18px 40px rgba(66, 46, 18, 0.08); --radius-xl: 36px; --radius-lg: 24px; --radius-md: 18px; }
+html { scroll-behavior: smooth; }
+body {  min-height: 100vh;overflow-x: hidden;font-family: var(--font-sans);color: var(--ink); background:radial-gradient(circle at top center,  rgba(150, 148, 144, 0.26) 0%,  rgba(150, 148, 144, 0.10) 18%,  transparent 38%   ),  radial-gradient(circle at top left,    rgba(214, 162, 67, 0.18),    transparent 30%  ),radial-gradient(circle at bottom right, rgba(102, 112, 68, 0.12),transparent 26% ),linear-gradient(180deg, #332D29 0%, #2E2925 100%); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+.site { min-height: 100vh; width: 100%; padding: 0; }
+.nav-shell { position: sticky; top: 0; z-index: 40; }
+.nav { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 18px 32px; border: 1px solid rgba(255, 255, 255, 0.65); background: rgba(255, 249, 241, 0.82); box-shadow: 0 14px 44px rgba(73, 53, 24, 0.1); backdrop-filter: blur(16px); opacity: 0; transform: translate3d(0, -40px, 0); animation: dropIn 0.78s cubic-bezier(0.22, 1, 0.36, 1) 0.04s forwards; }
+.nav-logo { position: relative; font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink); cursor: pointer; transition: color 0.22s ease, transform 0.22s ease, letter-spacing 0.22s ease; }
+.nav-logo::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 42%; height: 2px; border-radius: 999px; background: linear-gradient(90deg, transparent, var(--amber), transparent); opacity: 0; transform: translateX(-50%) scaleX(0.45); transition: opacity 0.22s ease, transform 0.22s ease; }
+.nav-logo:hover { color: var(--amber); transform: translateY(-1px); letter-spacing: 0.28em; }
+.nav-logo:hover::after { opacity: 1; transform: translateX(-50%) scaleX(1); }
+.nav-links { display: flex; align-items: center; gap: 1.6rem; color: var(--ink-soft); font-size: 0.92rem; letter-spacing: 0.04em; }
+.nav-links a { position: relative; display: inline-flex; align-items: center; padding: 8px 0; color: var(--ink-soft); cursor: pointer; transition: color 0.22s ease, transform 0.22s ease; }
+.nav-links a::before { content: ""; position: absolute; inset: -2px -12px; border-radius: 999px; background: rgba(182, 129, 40, 0.08); opacity: 0; transform: scale(0.92); transition: opacity 0.22s ease, transform 0.22s ease; }
+.nav-links a::after { content: ""; position: absolute; left: 0; bottom: 2px; width: 100%; height: 2px; border-radius: 999px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.22s ease; }
+.nav-links a:hover { color: var(--ink); transform: translateY(-1px); }
+.nav-links a:hover::before { opacity: 1; transform: scale(1); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.lang-row { display: flex; gap: 8px; }
+.lb { border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; background: transparent; color: var(--ink-soft); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer; transition: all 0.22s ease; }
+.lb.on, .lb:hover { border-color: var(--amber); background: var(--amber); color: #fff9f1; }
+.page { width: 100%; display: grid; gap: 28px; }
+.page > :not(.hero):not(.footer):not(.cta-card) { width: min(1360px, calc(100% - 32px)); margin: 0 auto; }
+.hero { position: relative; overflow: hidden; border-radius: 0 0 46px 46px; background: linear-gradient(90deg, rgba(28, 21, 16, 0.9) 0%, rgba(28, 21, 16, 0.7) 44%, rgba(28, 21, 16, 0.38) 100%), url("argan.jpg") center center / cover no-repeat; box-shadow: var(--shadow); }
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%), linear-gradient(180deg, rgba(24, 18, 14, 0.05), rgba(24, 18, 14, 0.42)); }
+.hero-grid { position: relative; z-index: 1; width: min(1380px, 100%); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: end; min-height: 720px; padding: 72px 58px 54px; }
+.hero-copy { color: #fff7ec; max-width: 700px; }
+.hero-kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; padding: 9px 16px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 999px; background: rgba(255, 255, 255, 0.08); color: #f3dfba; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber-strong); box-shadow: 0 0 0 5px rgba(215, 162, 67, 0.16); }
+.lang-block { display: none; }
+.lang-block.on { display: block; }
+.lang-block[dir="rtl"] { text-align: right; }
+.lang-block[dir="rtl"] .hero-sub { margin: 0 0 28px auto; }
+.lang-block[dir="rtl"] .hero-btns { justify-content: flex-end; }
+.hero-copy > *, .stat-card, .promo-card, .section-card, .story-card, .process-card, .cta-card, .footer { opacity: 0; transform: translate3d(0, -42px, 0); animation: dropIn 0.88s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.hero-copy > :nth-child(1) { animation-delay: 0.14s; }
+.hero-copy > :nth-child(2) { animation-delay: 0.24s; }
+.hero-copy > :nth-child(3) { animation-delay: 0.24s; }
+.stat-card:nth-child(1) { animation-delay: 0.38s; }
+.stat-card:nth-child(2) { animation-delay: 0.46s; }
+.stat-card:nth-child(3) { animation-delay: 0.54s; }
+.stat-card:nth-child(4) { animation-delay: 0.62s; }
+.promo-card { animation-delay: 0.68s; }
+.section-card { animation-delay: 0.7s; background: linear-gradient(135deg, #EEE5D8 0%, #F8F1E7 55%, #E4D1B7 100%);box-shadow:0 24px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.75); }
+.story-card { animation-delay: 0.8s; }
+.process-card { animation-delay: 0.9s; }
+.cta-card { animation-delay: 1s; }
+.footer { animation-delay: 1.08s; }
+.site.rtl-mode .nav { direction: rtl; }
+.site.rtl-mode .nav-links, .site.rtl-mode .lang-row { flex-direction: row-reverse; }
+.site.rtl-mode .hero-grid { direction: rtl; }
+.site.rtl-mode .hero-copy { text-align: right; }
+.site.rtl-mode .promo-card { direction: rtl; }
+.site.rtl-mode .promo-copy { text-align: right; }
+.site.rtl-mode .promo-actions { justify-content: flex-end; }
+.site.rtl-mode .promo-pill { justify-self: end; }
+.site.rtl-mode .footer, .site.rtl-mode .footer-meta { direction: rtl; }
+.site.rtl-mode .cart-float { right: auto; left: 22px; }
+.hero-title, .section-title, .story-title, .cta-title { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.04em; }
+.hero-title { font-size: clamp(3.4rem, 8vw, 6.2rem); line-height: 0.92; margin-bottom: 18px; }
+.hero-title em, .section-title em, .cta-title em { font-style: normal; color: #ffa600; }
+.hero-sub { max-width: 560px; color: rgba(255, 247, 236, 0.82); font-size: 1.04rem; line-height: 1.9; margin-bottom: 28px; }
+.hero-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-main, .btn-ghost, .wa-btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.btn-main { border: none; padding: 14px 24px; background: #fff7eb; color: var(--ink); font-weight: 700; }
+.btn-ghost { border: 1px solid rgba(255, 255, 255, 0.26); padding: 14px 24px; background: rgba(255, 255, 255, 0.06); color: #fff7ec; }
+.btn-main:hover, .btn-ghost:hover, .wa-btn:hover, .cart-float:hover { transform: translateY(-2px); }
+.stats-ribbon { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.stat-card { position: relative; overflow: hidden; padding: 28px 24px; border: 1px solid rgba(255, 255, 255, 0.56); border-radius: 28px; background: linear-gradient(180deg, rgba(223, 202, 176, 0.96), rgba(247, 238, 226, 0.92)); box-shadow: 0 16px 36px rgba(66, 46, 18, 0.08); transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease; }
+.stat-card::before { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 4px; background: linear-gradient(90deg, rgba(182, 129, 40, 0.92), rgba(215, 162, 67, 0.22), transparent); }
+.stat-card:hover { transform: translateY(-4px); border-color: rgba(182, 129, 40, 0.28); box-shadow: 0 22px 42px rgba(66, 46, 18, 0.12); }
+.stat-n { margin-bottom: 6px; color: var(--ink); font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; line-height: 1; }
+.stat-l { color: var(--ink-soft); font-size: 0.88rem; line-height: 1.6; }
+.promo-card { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr); gap: 22px; padding: 34px 36px; border: 1px solid rgba(255, 255, 255, 0.58); border-radius: var(--radius-xl); background: linear-gradient(135deg, rgba(255, 247, 235, 0.94) 0%, rgba(233, 216, 188, 0.96) 46%, rgba(128, 91, 39, 0.94) 100%); box-shadow: 0 24px 58px rgba(66, 46, 18, 0.14); isolation: isolate; }
+.promo-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.34), transparent 26%), radial-gradient(circle at bottom left, rgba(102, 112, 68, 0.18), transparent 24%); }
+.promo-copy { display: grid; gap: 16px; align-content: start; }
+.promo-kicker { color: rgba(35, 28, 22, 0.66); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
+.promo-title { max-width: 13ch; color: var(--ink); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.25rem); line-height: 0.98; }
+.promo-title em { font-style: normal; color: #9e5e11; }
+.promo-sub { max-width: 58ch; color: rgba(35, 28, 22, 0.78); font-size: 0.98rem; line-height: 1.82; }
+.promo-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.promo-card .btn-main { background: var(--ink); color: #fff7eb; }
+.promo-card .btn-ghost { border-color: rgba(35, 28, 22, 0.16); background: rgba(255, 255, 255, 0.16); color: var(--ink); }
+.promo-side { display: grid; gap: 16px; align-content: start; justify-items: stretch; }
+.promo-pill { justify-self: start; padding: 9px 16px; border-radius: 999px; background: rgba(35, 28, 22, 0.9); color: #fff7eb; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.promo-points { display: grid; gap: 14px; }
+.promo-point { padding: 18px 20px; border: 1px solid rgba(255, 255, 255, 0.42); border-radius: 24px; background: rgba(255, 249, 241, 0.28); backdrop-filter: blur(8px); }
+.promo-point strong { display: block; margin-bottom: 6px; color: var(--ink); font-size: 0.96rem; }
+.promo-point span { display: block; color: rgba(35, 28, 22, 0.74); font-size: 0.9rem; line-height: 1.68; }
+.section-card, .story-card, .cta-card { overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.6); border-radius: var(--radius-xl); background: rgba(255, 249, 241, 0.84); box-shadow: var(--shadow-soft); }
+.section-card, .story-card, .process-card { position: relative; isolation: isolate; }
+.section-card::before, .story-card::before, .process-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at top right, rgba(215, 162, 67, 0.14), transparent 28%), radial-gradient(circle at bottom left, rgba(102, 112, 68, 0.08), transparent 24%); }
+.section-card::after, .story-card::after, .process-card::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 1px; background: linear-gradient(90deg, rgba(182, 129, 40, 0.36), rgba(255, 255, 255, 0)); }
+.section-card, .story-card { padding: 42px; }
+.section-card { padding: 36px; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 1.75rem; margin-bottom: 28px; }
+.section-kicker, .story-kicker, .cta-kicker { margin-bottom: 14px; color: var(--olive); font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase; }
+.section-title { color: var(--ink); max-width: 15ch; font-size: clamp(2rem, 4.2vw, 3.3rem); line-height: 0.98; }
+.section-side { max-width: 360px; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.75; }
+.products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.product-card { display: flex; flex-direction: column; min-height: 376px; border: 1px solid var(--card-line); border-radius: 24px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.22)); box-shadow: 0 12px 28px rgba(66, 46, 18, 0.06); transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease; }
+.product-card:hover { transform: translateY(-5px); border-color: rgba(182, 129, 40, 0.28); box-shadow: 0 20px 42px rgba(66, 46, 18, 0.12); }
+.product-media { position: relative; min-height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px dashed rgba(182, 129, 40, 0.35); border-radius: 24px 24px 0 0; background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(236, 223, 201, 0.9)), repeating-linear-gradient(135deg, rgba(182, 129, 40, 0.06) 0 14px, rgba(255, 255, 255, 0.02) 14px 28px); text-align: center; }
+.product-fallback { display: none; padding: 10px 16px; border-radius: 999px; background: rgba(255, 249, 241, 0.76); color: var(--ink-soft); font-size: 0.82rem; letter-spacing: 0.04em; }
+.product-media.missing img { display: none; }
+.product-media.missing .product-fallback { display: inline-flex; }
+.product-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease, filter 0.3s ease; }
+.product-card:hover .product-media img { transform: scale(1.04); filter: saturate(1.05); }
+.product-index { display: none; }
+.product-copy { min-width: 0; padding: 18px 18px 10px; }
+.product-name { margin-bottom: 6px; color: var(--ink); font-size: 1.08rem; font-weight: 700; }
+.product-region { margin-bottom: 0; color: var(--olive); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.product-desc { display: block; margin-top: 12px; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.68; }
+.product-meta { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: auto; padding: 16px 18px 18px; border-top: 1px solid rgba(35, 28, 22, 0.08); }
+.product-meta-note { color: var(--ink-soft); font-size: 0.84rem; line-height: 1.4; white-space: nowrap; }
+.product-price { color: var(--amber); font-family: var(--font-display); font-size: 1.55rem; font-weight: 700; line-height: 1; white-space: nowrap; }
+.add-btn { width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; background: var(--cream); color: var(--amber); font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+.add-btn:hover { border-color: var(--amber); background: var(--amber); color: #fff9f1; }
+.story-card { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr); gap: 1.5rem 1.75rem; align-items: start; padding: 38px; }
+.story-copy { display: grid; gap: 16px; align-content: start; max-width: 700px; }
+.story-title { color: var(--ink); max-width: 15ch; font-size: clamp(1.95rem, 3.45vw, 3rem); line-height: 0.98; }
+.story-body { color: var(--ink-soft); max-width: 60ch; font-size: 0.96rem; line-height: 1.82; }
+.story-quote { width: min(100%, 420px); justify-self: end; padding: 24px 26px; border: 1px solid rgba(182, 129, 40, 0.14); border-radius: 30px; background: linear-gradient(180deg, rgba(236, 223, 201, 0.96), rgba(255, 255, 255, 0.5)); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 14px 30px rgba(66, 46, 18, 0.06); }
+.quote-mark { margin-bottom: 6px; color: var(--amber); font-family: var(--font-display); font-size: 2.8rem; line-height: 0.7; }
+.quote-text { margin-bottom: 14px; font-size: 0.96rem; line-height: 1.78; }
+.story-quote .story-kicker { margin-bottom: 0; font-size: 0.72rem; letter-spacing: 0.2em; }
+.process-card { padding: 36px; border: 1px solid rgba(255, 255, 255, 0.6); border-radius: var(--radius-xl); background: linear-gradient(180deg, rgba(255, 249, 241, 0.88), rgba(250, 242, 230, 0.78)); box-shadow: var(--shadow-soft); }
+.process-head { margin-bottom: 24px; }
+.process-copy { display: grid; gap: 12px; max-width: 760px; }
+.process-card .section-title { max-width: 10ch; font-size: clamp(1.95rem, 3.4vw, 3rem); line-height: 0.98; }
+.process-side { max-width: 46ch; margin-top: 2px; }
+.timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.step { display: grid; align-content: start; min-height: 172px; padding: 20px; border: 1px solid var(--card-line); border-radius: 24px; background: rgba(255, 255, 255, 0.42); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); transition: transform 0.22s ease, border-color 0.22s ease; }
+.step:hover { transform: translateY(-3px); border-color: rgba(182, 129, 40, 0.22); }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-bottom: 14px; border-radius: 14px; background: var(--ink); color: #fff7eb; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; }
+.step-title { margin-bottom: 8px; color: var(--ink); font-size: 1rem; font-weight: 700; }
+.step-desc { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.72; }
+.cta-card { width: 100%; margin: -28px 0; padding: 0; border-color: rgba(255, 255, 255, 0.22); border-radius: 0; background: linear-gradient(135deg, #262017 0%, #3a2f20 42%, #8b6331 100%); color: #fff7eb; box-shadow: 0 28px 70px rgba(56, 39, 17, 0.22); }
+.cta-inner { display: grid; gap: 20px; justify-items: center; align-items: center; width: min(860px, calc(100% - 32px)); margin: 0 auto; padding: 48px 48px 42px; text-align: center; }
+.cta-kicker { margin-bottom: 14px; color: #f0d8aa; font-size: 0.82rem; letter-spacing: 0.34em; }
+.cta-title { margin-bottom: 14px; font-size: clamp(4.2rem, 10vw, 6.6rem); line-height: 0.88; }
+.cta-sub { max-width: 620px; margin: 0 auto; color: rgba(255, 247, 235, 0.82); font-size: 1.08rem; line-height: 1.78; }
+.wa-btn { gap: 12px; border: 1px solid rgba(255, 255, 255, 0.18); padding: 16px 34px; background: #fff7eb; color: var(--ink); font-weight: 700; white-space: nowrap; box-shadow: 0 12px 28px rgba(35, 28, 22, 0.16); }
+.wa-btn::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px rgba(182, 129, 40, 0.16); }
+.footer { position: relative; width: 100%; justify-self: stretch; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-top: -28px; padding: 28px 24px 34px; border-top: 1px solid rgba(35, 28, 22, 0.08); border-bottom: 1px solid rgba(35, 28, 22, 0.08); background: #ffffff; box-shadow: none; backdrop-filter: none; color: var(--ink-soft); font-size: 0.86rem; text-align: center; }
+.footer::before { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 0; background: transparent; }
+.footer-main, .footer-meta a { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 8px 0; color: var(--ink-soft); transition: color 0.22s ease, transform 0.22s ease; }
+.footer-main::before, .footer-meta a::before { content: ""; position: absolute; inset: -2px -12px; border-radius: 999px; background: rgba(182, 129, 40, 0.08); opacity: 0; transform: scale(0.92); transition: opacity 0.22s ease, transform 0.22s ease; }
+.footer-main::after, .footer-meta a::after { content: ""; position: absolute; left: 0; bottom: 2px; width: 100%; height: 2px; border-radius: 999px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.22s ease; }
+.footer-main:hover, .footer-meta a:hover { color: var(--ink); transform: translateY(-1px); }
+.footer-main:hover::before, .footer-meta a:hover::before { opacity: 1; transform: scale(1); }
+.footer-main:hover::after, .footer-meta a:hover::after { transform: scaleX(1); }
+.footer-meta { display: flex; justify-content: center; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.cart-float { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: none; align-items: center; gap: 10px; border: none; border-radius: 999px; padding: 14px 20px; background: var(--ink); color: #fff7eb; box-shadow: 0 18px 36px rgba(35, 28, 22, 0.22); cursor: pointer; transition: transform 0.2s ease, background 0.2s ease; }
+.cart-float.on { display: inline-flex; }
+.cart-float:hover { background: #352a20; }
+@keyframes dropIn { 0% { opacity: 0; transform: translate3d(0, -42px, 0); } 100% { opacity: 1; transform: translate3d(0, 0, 0); } }
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+ .nav, .hero-copy > *, .stat-card, .promo-card, .section-card, .story-card, .process-card, .cta-card, .footer { opacity: 1; transform: none; animation: none; }
+}
+@media (max-width: 1120px) {
+.hero-grid, .promo-card, .story-card { grid-template-columns: 1fr; }
+.story-copy, .process-copy { max-width: none; }
+.story-quote { width: 100%; justify-self: stretch; }
+.stats-ribbon, .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+.nav { padding: 16px 18px; flex-wrap: wrap; justify-content: center; }
+.nav-logo { width: 100%; text-align: center; }
+.nav-links { flex-wrap: wrap; justify-content: center; }
+.hero-grid { min-height: auto; padding: 44px 24px 28px; }
+.hero-copy { max-width: none; }
+.promo-card { padding: 28px; }
+.section-head, .process-head { display: grid; grid-template-columns: 1fr; align-items: start; }
+}
+@media (max-width: 640px) {
+.site { padding: 0; }
+.page > :not(.hero):not(.footer):not(.cta-card) { width: calc(100% - 20px); }
+.hero { border-radius: 0 0 28px 28px; }
+.promo-card { padding: 24px; }
+.promo-title { font-size: 2.35rem; }
+.cta-card { width: 100%; margin: -28px 0; border-radius: 0; }
+.cta-inner { padding: 36px 24px 32px; }
+.hero-title { font-size: 2.85rem; }
+.hero-btns, .promo-actions { width: 100%; }
+.btn-main, .btn-ghost, .wa-btn { width: 100%; justify-content: center; }
+.stats-ribbon, .timeline, .products { grid-template-columns: 1fr; }
+.section-card, .story-card, .process-card { padding: 24px; }
+.product-card { min-height: 332px; }
+.product-copy { padding: 14px 14px 10px; }
+.product-media { min-height: 190px; }
+.product-meta { padding: 16px 14px 14px; }
+.footer { padding: 24px 18px 82px; }
+.footer-meta { gap: 0.8rem 1rem; }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="site">
+    <header class="nav-shell">
+      <nav class="nav">
+        <div class="nav-logo"><a href="preview-argan.html">Arkan</a></div>
+        <div class="nav-links">
+          <a href="preview-argan-products.html" data-i18n="nav.products">Products</a>
+          <a href="#story" data-i18n="nav.story">Story</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </div>
+        <div class="lang-row">
+          <button class="lb on" type="button" data-lang="en">EN</button>
+          <button class="lb" type="button" data-lang="fr">FR</button>
+          <button class="lb" type="button" data-lang="ar">AR</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-kicker">
+              <span class="dot"></span>
+              <span data-i18n="hero.kicker">100% Natural &middot; Moroccan Argan Oil</span>
+            </div>
+            <h1 class="hero-title" data-i18n="hero.title" data-i18n-html>Atlas argan,<br><em>pressed like a ritual</em></h1>
+            <p class="hero-sub" data-i18n="hero.sub">Every bottle begins with hand-selected kernels, a slow cold press, and the work of women artisans protecting one of Morocco's most iconic landscapes.</p>
+            <div class="hero-btns">
+              <a class="btn-main" href="#collection" data-i18n="hero.btn.shop">Shop collection</a>
+              <a class="btn-ghost" href="#story" data-i18n="hero.btn.craft">Discover the craft</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-ribbon">
+        <div class="stat-card">
+          <div class="stat-n">50</div>
+          <div class="stat-l" data-i18n="stats.1">Women artisans crafting pure Moroccan argan oil.</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-n">10+</div>
+          <div class="stat-l" data-i18n="stats.2">Years of tradition, care, and natural production.</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-n">0</div>
+          <div class="stat-l" data-i18n="stats.3">No additives. No chemicals. Just pure argan oil.</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-n">4</div>
+          <div class="stat-l" data-i18n="stats.4">Daily rituals for skin, hair, beauty, and wellness.</div>
+        </div>
+      </section>
+
+      <section class="promo-card" id="promo">
+        <div class="promo-copy">
+          <div class="promo-kicker" data-i18n="promo.kicker">Seasonal Promo</div>
+          <h2 class="promo-title" data-i18n="promo.title" data-i18n-html>This week only,<br><em>15% off cosmetic pairs</em></h2>
+          <p class="promo-sub" data-i18n="promo.sub">Choose any two cosmetic oil bottles and get an instant 15% reduction. Limited batches, careful packing, and WhatsApp ordering in a few taps.</p>
+          <div class="promo-actions">
+            <a class="btn-main" href="#collection" data-i18n="promo.btn.shop">Shop the offer</a>
+            <a class="btn-ghost" href="#contact" data-i18n="promo.btn.order">Order now</a>
+          </div>
+        </div>
+
+        <div class="promo-side">
+          <div class="promo-pill" data-i18n="promo.pill">Code: ATLAS15</div>
+          <div class="promo-points">
+            <div class="promo-point">
+              <strong data-i18n="promo.pt1.title">Best for gifting</strong>
+              <span data-i18n="promo.pt1.desc">Apply the promo on paired cosmetic bottles prepared in gift-ready packaging.</span>
+            </div>
+            <div class="promo-point">
+              <strong data-i18n="promo.pt2.title">Fast WhatsApp checkout</strong>
+              <span data-i18n="promo.pt2.desc">Send your preferred bottles, quantity, and delivery city directly from the final order section.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" id="collection">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker" data-i18n="col.kicker">Collection</div>
+            <h2 class="section-title" data-i18n="col.title" data-i18n-html>Four bottles,<br><em>four ways to live with argan</em></h2>
+          </div>
+          <p class="section-side" data-i18n="col.side">Each format keeps the same cooperative origin, but shifts its purpose: beauty ritual, culinary depth, everyday care, or a gift-ready set.</p>
+        </div>
+
+        <div class="products">
+          <article class="product-card">
+            <div class="product-media">
+              <img src="argan.jpg" alt="Pure cosmetic oil" data-i18n-alt="col.p1.name" onerror="this.parentElement.classList.add('missing')" />
+              <span class="product-fallback" data-i18n="col.p1.name">Pure cosmetic oil</span>
+            </div>
+            <div class="product-index">01</div>
+            <div class="product-copy">
+              <div class="product-name" data-i18n="col.p1.name">Pure cosmetic oil</div>
+              <div class="product-region" data-i18n="col.p1.reg">Tiznit &middot; 100 ml</div>
+              <p class="product-desc" data-i18n="col.p1.desc">Silky, clean, and ideal for face, nails, and dry ends. A light finish with a soft natural scent.</p>
+            </div>
+            <div class="product-meta">
+              <div class="product-price">140 MAD</div>
+              <button class="add-btn" type="button" aria-label="Add pure cosmetic oil" data-product-key="pp1.name" data-price="140">+</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <img src="argan.jpg" alt="Culinary argan oil" data-i18n-alt="col.p2.name" onerror="this.parentElement.classList.add('missing')" />
+              <span class="product-fallback" data-i18n="col.p2.name">Culinary argan oil</span>
+            </div>
+            <div class="product-index">02</div>
+            <div class="product-copy">
+              <div class="product-name" data-i18n="col.p2.name">Culinary argan oil</div>
+              <div class="product-region" data-i18n="col.p2.reg">Souss Valley &middot; 250 ml</div>
+              <p class="product-desc" data-i18n="col.p2.desc">Pressed for the table with a rounded toasted profile, perfect over bread, salads, and amlou.</p>
+            </div>
+            <div class="product-meta">
+              <div class="product-price">180 MAD</div>
+              <button class="add-btn" type="button" aria-label="Add culinary argan oil" data-product-key="pp2.name" data-price="180">+</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <img src="argan.jpg" alt="Roasted reserve" data-i18n-alt="col.p3.name" onerror="this.parentElement.classList.add('missing')" />
+              <span class="product-fallback" data-i18n="col.p3.name">Roasted reserve</span>
+            </div>
+            <div class="product-index">03</div>
+            <div class="product-copy">
+              <div class="product-name" data-i18n="col.p3.name">Roasted reserve</div>
+              <div class="product-region" data-i18n="col.p3.reg">Anti-Atlas &middot; 250 ml</div>
+              <p class="product-desc" data-i18n="col.p3.desc">A deeper roast for richer aroma and a more pronounced finish in warm dishes and breakfasts.</p>
+            </div>
+            <div class="product-meta">
+              <div class="product-meta-note" data-i18n="col.p3.note">Signature roast</div>
+              <div class="product-price">195 MAD</div>
+              <button class="add-btn" type="button" aria-label="Add roasted reserve" data-product-key="pp3.name" data-price="195">+</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <img src="argan.jpg" alt="Ritual set" data-i18n-alt="col.p4.name" onerror="this.parentElement.classList.add('missing')" />
+              <span class="product-fallback" data-i18n="col.p4.name">Ritual set</span>
+            </div>
+            <div class="product-index">04</div>
+            <div class="product-copy">
+              <div class="product-name" data-i18n="col.p4.name">Ritual set</div>
+              <div class="product-region" data-i18n="col.p4.reg">Cooperative edition</div>
+              <p class="product-desc" data-i18n="col.p4.desc">A paired set for skincare and tasting, assembled for gifting or a first introduction to argan.</p>
+            </div>
+            <div class="product-meta">
+              <div class="product-price">260 MAD</div>
+              <button class="add-btn" type="button" aria-label="Add ritual set" data-product-key="pp4.name" data-price="260">+</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="story-card" id="story">
+        <div class="story-copy">
+          <div class="story-kicker" data-i18n="story.kicker">Cooperative Story</div>
+          <h2 class="story-title" data-i18n="story.title">Made by women who know the tree, the fruit, and the work behind every drop.</h2>
+          <p class="story-body" data-i18n="story.body">Founded in 2012, the cooperative brings together women from the argan region around shared production, stable income, and long-term stewardship. The process stays close to the source: fruit collection, kernel preparation, slow pressing, and careful bottling in small batches.</p>
+        </div>
+
+        <aside class="story-quote">
+          <div class="quote-mark">&ldquo;</div>
+          <p class="quote-text" data-i18n="story.quote">Argan is not only a product for us. It is a rhythm of work, a local ecosystem, and a source of dignity carried from hand to hand.</p>
+          <div class="story-kicker" data-i18n="story.quote.attr">From the cooperative notebook</div>
+        </aside>
+      </section>
+
+      <section class="process-card" id="process">
+        <div class="process-head">
+          <div class="process-copy">
+            <div class="section-kicker" data-i18n="proc.kicker">Process</div>
+            <h2 class="section-title" data-i18n="proc.title" data-i18n-html>From fruit to bottle,<br><em>nothing rushed</em></h2>
+            <p class="section-side process-side" data-i18n="proc.side">The method stays intentionally slow so the oil keeps its natural character, aroma, and value for both care and cuisine.</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="step">
+            <div class="step-num">01</div>
+            <h3 class="step-title" data-i18n="proc.s1.t">Fruit is gathered</h3>
+            <p class="step-desc" data-i18n="proc.s1.d">Argan fruit is collected in season and dried carefully before the shells are opened.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">02</div>
+            <h3 class="step-title" data-i18n="proc.s2.t">Kernels are prepared</h3>
+            <p class="step-desc" data-i18n="proc.s2.d">The hardest part is done by hand, keeping the selected kernels intact and ready for pressing.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">03</div>
+            <h3 class="step-title" data-i18n="proc.s3.t">Oil is cold pressed</h3>
+            <p class="step-desc" data-i18n="proc.s3.d">A slow mechanical press extracts the oil without unnecessary heat or heavy intervention.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">04</div>
+            <h3 class="step-title" data-i18n="proc.s4.t">Bottles are finished</h3>
+            <p class="step-desc" data-i18n="proc.s4.d">Each batch is filtered lightly, labeled, and packed for local delivery or export.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-card" id="contact">
+        <div class="cta-inner">
+          <div>
+            <div class="cta-kicker" data-i18n="cta.kicker">Ready to Order</div>
+            <h2 class="cta-title" data-i18n="cta.title" data-i18n-html>Taste<br><em>the Atlas</em></h2>
+            <p class="cta-sub" data-i18n="cta.sub">Shipping across Morocco and worldwide. Minimum order 2 bottles. Fresh from the cooperative to your door.</p>
+          </div>
+          <a class="wa-btn" id="waOrderBtn" href="https://wa.me/212600000000?text=Hello%20Arkan%2C%20I%20want%20to%20place%20an%20order." data-i18n="cta.btn">Order via WhatsApp</a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-main" data-i18n="footer.main">Arkan Cooperative &middot; Souss-Massa &middot; Morocco</div>
+        <div class="footer-meta">
+          <a href="mailto:contact@arkan.ma">contact@arkan.ma</a>
+          <a href="tel:+212600000000">+212 6XX XXX XXX</a>
+        </div>
+      </footer>
+    </main>
+
+    <button class="cart-float" id="cartFloat" type="button">
+      <span id="cartNum">0</span>
+      <span data-i18n="cart.label">items added</span>
+    </button>
+  </div>
+
+  <script src="lang.js"></script>
+  <script>
+    const CART_KEY = "arkan-products-cart";
+    const CART_PHONE = "212600000000";
+    const LEGACY_NAME_TO_KEY = {
+      "Pure cosmetic oil": "pp1.name",
+      "Culinary argan oil": "pp2.name",
+      "Roasted reserve": "pp3.name",
+      "Ritual set": "pp4.name"
+    };
+
+    const waOrderBtn = document.getElementById("waOrderBtn");
+    const cartFloat = document.getElementById("cartFloat");
+    const cartNum = document.getElementById("cartNum");
+    const cart = new Map();
+
+    function t(key) {
+      return window.arkanI18n.translate(key, window.arkanI18n.getCurrentLang());
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem(CART_KEY, JSON.stringify(Array.from(cart.values())));
+      } catch (_) {
+        return;
+      }
+    }
+
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem(CART_KEY);
+        if (!raw) {
+          return;
+        }
+
+        const items = JSON.parse(raw);
+        if (!Array.isArray(items)) {
+          return;
+        }
+
+        items.forEach((item) => {
+          if (!item || !item.qty || !item.price) {
+            return;
+          }
+
+          const nameKey = item.nameKey || LEGACY_NAME_TO_KEY[item.name];
+          if (!nameKey) {
+            return;
+          }
+
+          cart.set(nameKey, {
+            nameKey,
+            price: Number(item.price),
+            qty: Number(item.qty)
+          });
+        });
+      } catch (_) {
+        try {
+          localStorage.removeItem(CART_KEY);
+        } catch (error) {
+          return;
+        }
+      }
+    }
+
+    function buildWhatsappMessage(items, total) {
+      if (!items.length) {
+        return t("order.default");
+      }
+
+      const lines = items.map((item) => {
+        return "- " + t(item.nameKey) + " x" + item.qty + " - " + (item.qty * item.price) + " MAD";
+      });
+
+      return [
+        t("order.intro"),
+        "",
+        ...lines,
+        "",
+        t("order.total") + ": " + total + " MAD"
+      ].join("\n");
+    }
+
+    function updateCartUI() {
+      const items = Array.from(cart.values());
+      const total = items.reduce((sum, item) => sum + (item.qty * item.price), 0);
+      const count = items.reduce((sum, item) => sum + item.qty, 0);
+
+      cartNum.textContent = String(count);
+      cartFloat.classList.toggle("on", count > 0);
+
+      if (waOrderBtn) {
+        waOrderBtn.href = "https://wa.me/" + CART_PHONE + "?text=" + encodeURIComponent(buildWhatsappMessage(items, total));
+      }
+    }
+
+    function addToCart(button) {
+      const nameKey = button.dataset.productKey;
+      const price = Number(button.dataset.price);
+      const current = cart.get(nameKey) || { nameKey, price, qty: 0 };
+
+      current.qty += 1;
+      cart.set(nameKey, current);
+      saveCart();
+      updateCartUI();
+
+      button.classList.add("added");
+      window.setTimeout(() => {
+        button.classList.remove("added");
+      }, 220);
+    }
+
+    document.querySelectorAll(".add-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        addToCart(button);
+      });
+    });
+
+    if (cartFloat) {
+      cartFloat.addEventListener("click", () => {
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      });
+    }
+
+    window.addEventListener("arkan:langchange", updateCartUI);
+
+    loadCart();
+    updateCartUI();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — Nhal Atlas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #D4A017;
+      --gold-light: #F0C040;
+      --gold-border: rgba(212,160,23,0.25);
+      --dark: #0A0800;
+      --dark2: #120F02;
+      --dark3: #1A1505;
+      --text: #F7EDCA;
+      --muted: #9A8050;
+      --dim: #524030;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      background-color: var(--dark);
+      background-image: linear-gradient(rgba(10,8,0,0.93), rgba(10,8,0,0.93)), url('b04e6e35bd3f196f085bb034d539b76f.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+    }
+
+    /* NAV */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 2.5rem;
+      background: rgba(10,8,0,0.95);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .nav-logo { font-size: 22px; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 14px; color: var(--muted); cursor: pointer; letter-spacing: 0.5px; transition: color 0.3s; text-decoration: none; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .lang-row { display: flex; gap: 8px; }
+    .lb { font-size: 11px; padding: 5px 14px; border: 1px solid var(--gold-border); border-radius: 50px; cursor: pointer; color: var(--muted); background: transparent; transition: all 0.3s; }
+    .lb.on, .lb:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); font-weight: 500; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 5rem 2rem 3.5rem;
+      text-align: center;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(212,160,23,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .page-header-inner { position: relative; z-index: 1; }
+    .sec-label { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .page-title { font-size: 64px; font-weight: 500; color: var(--text); line-height: 1.05; margin-bottom: 14px; }
+    .page-title em { color: var(--gold); font-style: normal; }
+    .page-sub { font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 480px; margin: 0 auto; }
+
+    /* FILTERS */
+    .filters-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto 2.5rem;
+      padding: 0 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ftab {
+      font-size: 13px; padding: 8px 20px;
+      border: 1px solid var(--gold-border); border-radius: 50px;
+      color: var(--muted); background: transparent;
+      cursor: pointer; transition: all 0.25s; letter-spacing: 0.3px;
+    }
+    .ftab:hover { border-color: var(--gold); color: var(--gold); }
+    .ftab.on { background: var(--gold); color: var(--dark); border-color: var(--gold); font-weight: 500; }
+    .sort-select {
+      font-size: 13px; padding: 8px 16px;
+      border: 1px solid var(--gold-border); border-radius: 50px;
+      color: var(--muted); background: var(--dark2);
+      cursor: pointer; outline: none;
+      transition: border-color 0.25s;
+    }
+    .sort-select:focus { border-color: var(--gold); color: var(--gold); }
+
+    /* PRODUCT GRID */
+    .products-section { padding: 0 2rem 6rem; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* PRODUCT CARD */
+    .pcard {
+      background: var(--dark2); cursor: pointer; position: relative; overflow: hidden;
+      border-radius: 20px; border: 1px solid var(--gold-border);
+      transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+      display: flex; flex-direction: column;
+    }
+    .pcard:hover { transform: translateY(-6px); border-color: rgba(212,160,23,0.6); box-shadow: 0 18px 48px rgba(0,0,0,0.5); }
+
+    .pcard-badge {
+      position: absolute; top: 10px; left: 10px; z-index: 2;
+      font-size: 10px; padding: 4px 10px; border-radius: 50px;
+      letter-spacing: 1px; text-transform: uppercase; font-weight: 500;
+    }
+    .badge-new { background: var(--gold); color: var(--dark); }
+    .badge-rare { background: rgba(180,60,255,0.18); color: #c97cf7; border: 1px solid rgba(180,60,255,0.3); }
+    .badge-seasonal { background: rgba(46,204,113,0.14); color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+
+    .pcard-img { height: 160px; overflow: hidden; border-radius: 18px 18px 0 0; background: var(--dark); flex-shrink: 0; position: relative; cursor: pointer; }
+    .pcard-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8) saturate(1.3); transition: transform 0.6s ease, filter 0.4s; }
+    .pcard:hover .pcard-img img { transform: scale(1.1); filter: brightness(1) saturate(1.5); }
+    .pcard-img::after {
+      content: '+ add photo';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+      background: rgba(10,8,0,0.55);
+      opacity: 0; transition: opacity 0.2s; pointer-events: none;
+    }
+    .pcard-img:hover::after { opacity: 1; }
+
+    .pcard-body { padding: 14px 16px 18px; flex: 1; display: flex; flex-direction: column; }
+    .pcard-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .pcard-region { font-size: 12px; color: var(--dim); margin-bottom: 8px; }
+    .pcard-desc { font-size: 12px; color: var(--muted); line-height: 1.55; margin-bottom: 12px; flex: 1; }
+    .pcard-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+    .ptag { font-size: 10px; padding: 3px 9px; border-radius: 50px; border: 1px solid var(--gold-border); color: var(--muted); letter-spacing: 0.3px; }
+    .pcard-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+    .pcard-price { font-size: 18px; font-weight: 500; color: var(--gold); }
+    .pcard-price span { font-size: 12px; color: var(--dim); font-weight: 400; }
+    .add-btn {
+      width: 34px; height: 34px;
+      background: rgba(212,160,23,0.12); border: 1px solid var(--gold-border);
+      border-radius: 50%; color: var(--gold);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s; flex-shrink: 0; font-size: 16px;
+    }
+    .add-btn:hover { background: var(--gold); color: var(--dark); }
+    .add-btn.added { background: var(--gold); color: var(--dark); }
+
+    /* DETAIL MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.78);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--dark2); border: 1px solid var(--gold-border);
+      border-radius: 28px; width: 100%; max-width: 560px;
+      overflow: hidden; transform: translateY(20px);
+      transition: transform 0.3s;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-img { height: 220px; overflow: hidden; position: relative; }
+    .modal-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) saturate(1.3); }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(10,8,0,0.7); border: 1px solid var(--gold-border);
+      color: var(--text); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; transition: all 0.2s;
+    }
+    .modal-close:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+    .modal-body { padding: 2rem; }
+    .modal-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .modal-name { font-size: 30px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .modal-region { font-size: 13px; color: var(--dim); margin-bottom: 16px; }
+    .modal-desc { font-size: 14px; color: var(--muted); line-height: 1.85; margin-bottom: 20px; }
+    .modal-attrs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .size-selector { margin-bottom: 24px; }
+    .size-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .size-btns { display: flex; gap: 8px; }
+    .size-btn {
+      padding: 8px 20px; border-radius: 50px;
+      border: 1px solid var(--gold-border);
+      background: transparent; color: var(--muted);
+      font-size: 13px; cursor: pointer; transition: all 0.2s;
+    }
+    .size-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .size-btn.on { background: var(--gold); color: var(--dark); border-color: var(--gold); font-weight: 500; }
+    .attr { font-size: 11px; padding: 6px 14px; border: 1px solid var(--gold-border); border-radius: 50px; color: var(--gold); letter-spacing: 0.5px; background: rgba(212,160,23,0.07); }
+    .modal-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .modal-price { font-size: 32px; font-weight: 500; color: var(--gold); }
+    .modal-price small { font-size: 13px; color: var(--dim); font-weight: 400; }
+    .btn-gold { padding: 13px 30px; background: var(--gold); color: var(--dark); border: none; border-radius: 50px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s; }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* CART FLOAT */
+    .cart-float {
+      position: fixed; bottom: 28px; right: 28px;
+      background: var(--gold); color: var(--dark);
+      padding: 12px 24px; font-size: 14px; font-weight: 500;
+      cursor: pointer; display: none; align-items: center; gap: 10px;
+      z-index: 150; transition: all 0.3s; border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(212,160,23,0.35);
+    }
+    .cart-float.on { display: flex; }
+    .cart-float:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* CTA STRIP */
+    .cta-strip {
+      background: transparent;
+      padding: 4rem 2rem; text-align: center; margin-bottom: 0;
+    }
+    .cta-strip-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .cta-strip-title { font-size: 40px; font-weight: 500; color: var(--text); margin-bottom: 10px; }
+    .cta-strip-title em { color: var(--gold); font-style: normal; }
+    .cta-strip-sub { font-size: 15px; color: var(--muted); margin-bottom: 28px; }
+    .wa-btn { display: inline-flex; align-items: center; gap: 12px; padding: 14px 32px; background: rgba(46,204,113,0.1); color: #2ecc71; border: 1px solid rgba(46,204,113,0.4); border-radius: 50px; font-size: 15px; cursor: pointer; transition: all 0.3s; }
+    .wa-btn:hover { background: #2ecc71; color: var(--dark); transform: translateY(-2px); }
+    .wa-dot { width: 8px; height: 8px; border-radius: 50%; background: #2ecc71; animation: wap 1.6s ease-in-out infinite; }
+    @keyframes wap { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.6)} }
+
+    /* FOOTER */
+    .footer-bar { padding: 24px 2rem; background: transparent; display: flex; justify-content: center; gap: 2.5rem; font-size: 13px; color: var(--dim); flex-wrap: wrap; letter-spacing: 0.4px; }
+
+    /* CART MODAL */
+    .cart-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,0.75);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: all; }
+    .cart-modal {
+      background: var(--dark2); border: 1px solid var(--gold-border);
+      border-radius: 28px; width: 100%; max-width: 480px;
+      transform: translateY(20px); transition: transform 0.3s;
+      max-height: 85vh; display: flex; flex-direction: column;
+    }
+    .cart-overlay.open .cart-modal { transform: translateY(0); }
+    .cart-modal-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--gold-border);
+      flex-shrink: 0;
+    }
+    .cart-modal-title { font-size: 18px; font-weight: 500; color: var(--text); }
+    .cart-modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: transparent; border: 1px solid var(--gold-border);
+      color: var(--muted); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .cart-modal-close:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+    .cart-modal-items { flex: 1; overflow-y: auto; padding: 0.5rem 2rem; }
+    .cart-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--gold-border);
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .cart-item-price { font-size: 12px; color: var(--dim); }
+    .cart-item-qty { display: flex; align-items: center; gap: 8px; }
+    .qty-btn {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: transparent; border: 1px solid var(--gold-border);
+      color: var(--gold); cursor: pointer; font-size: 15px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .qty-btn:hover { background: var(--gold); color: var(--dark); }
+    .cart-item-qty span { font-size: 14px; color: var(--text); min-width: 20px; text-align: center; }
+    .cart-item-subtotal { font-size: 14px; font-weight: 500; color: var(--gold); min-width: 72px; text-align: right; }
+    .cart-modal-foot {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--gold-border);
+      flex-shrink: 0;
+    }
+    .cart-total-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 1.25rem;
+    }
+    .cart-total-row > span:first-child { font-size: 14px; color: var(--muted); }
+    .cart-total-row > span:last-child { font-size: 26px; font-weight: 500; color: var(--gold); }
+    .wa-btn-cart {
+      width: 100%; display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 14px 24px;
+      background: rgba(46,204,113,0.1); color: #2ecc71;
+      border: 1px solid rgba(46,204,113,0.4);
+      border-radius: 50px; font-size: 15px; cursor: pointer;
+      transition: all 0.3s; font-weight: 500;
+    }
+    .wa-btn-cart:hover { background: #2ecc71; color: var(--dark); }
+    .cart-empty {
+      flex: 1; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 3rem 2rem; gap: 12px; display: none;
+    }
+    .cart-empty i { font-size: 40px; color: var(--gold-border); display: block; }
+    .cart-empty p { font-size: 14px; color: var(--dim); }
+
+    /* EMPTY STATE */
+    .empty-state { text-align: center; padding: 5rem 2rem; color: var(--dim); display: none; }
+    .empty-state i { font-size: 48px; color: var(--gold-border); display: block; margin-bottom: 16px; }
+    .empty-state p { font-size: 15px; }
+
+    /* ANIMATIONS */
+    .pcard { opacity: 0; transform: translateY(16px); animation: fadeCard 0.5s ease forwards; }
+    @keyframes fadeCard { to { opacity:1; transform:translateY(0); } }
+
+    @media (max-width: 750px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-title { font-size: 42px; }
+      .nav-links { display: none; }
+      .filters-bar { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="preview-honey.html" class="nav-logo">Nhal Atlas</a>
+    <div class="nav-links">
+      <a href="preview-honey-products.html" class="active" data-i18n="nav.products">Products</a>
+      <a href="preview-honey.html" data-i18n="nav.story">Our story</a>
+      <a href="preview-honey.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="lang-row">
+      <button class="lb on" onclick="setLang('en')">EN</button>
+      <button class="lb" onclick="setLang('fr')">FR</button>
+      <button class="lb" onclick="setLang('ar')">AR</button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="sec-label" data-i18n="header.label">Our collection</div>
+      <h1 class="page-title" data-i18n-html="header.title">Eight honeys,<br><em>one mountain</em></h1>
+      <p class="page-sub" data-i18n="header.sub">Every variety traceable to a specific hive, altitude, and season. Raw, unfiltered, certified organic.</p>
+    </div>
+  </div>
+
+  <div class="filters-bar">
+    <div class="filter-tabs">
+      <button class="ftab on" data-filter="all" data-i18n="filter.all">All</button>
+      <button class="ftab" data-filter="mountain" data-i18n="filter.mountain">Mountain</button>
+      <button class="ftab" data-filter="floral" data-i18n="filter.floral">Floral</button>
+      <button class="ftab" data-filter="medicinal" data-i18n="filter.medicinal">Medicinal</button>
+      <button class="ftab" data-filter="rare" data-i18n="filter.rare">Rare</button>
+    </div>
+    <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+      <option value="default" data-i18n="sort.featured">Sort: Featured</option>
+      <option value="price-asc" data-i18n="sort.asc">Price: Low to High</option>
+      <option value="price-desc" data-i18n="sort.desc">Price: High to Low</option>
+    </select>
+  </div>
+
+  <section class="products-section">
+    <div class="products-grid" id="productsGrid"></div>
+    <div class="empty-state" id="emptyState">
+      <i class="ti ti-mood-empty"></i>
+      <p data-i18n="empty.msg">No products in this category.</p>
+    </div>
+  </section>
+
+  <!-- DETAIL MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+      <div class="modal-img">
+        <img id="modalImg" src="" alt="" />
+        <button class="modal-close" onclick="closeModalDirect()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-label" id="modalLabel"></div>
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-region" id="modalRegion"></div>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-attrs" id="modalAttrs"></div>
+        <div class="size-selector">
+          <div class="size-label" data-i18n="size.label">Size</div>
+          <div class="size-btns">
+            <button class="size-btn on" data-mult="1" data-size="250g">250g</button>
+            <button class="size-btn" data-mult="1.8" data-size="500g">500g</button>
+            <button class="size-btn" data-mult="3.4" data-size="1kg">1kg</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal-price" id="modalPrice"></div>
+          <button class="btn-gold" onclick="addCartModal()" data-i18n="modal.add">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-strip">
+    <div class="cta-strip-label" data-i18n="cta.label">Ready to order</div>
+    <div class="cta-strip-title" data-i18n-html="cta.title">Can't choose? <em>Let us help.</em></div>
+    <p class="cta-strip-sub" data-i18n="cta.sub">Message us on WhatsApp — we'll recommend the right honey for your taste or occasion.</p>
+    <button class="wa-btn"><span class="wa-dot"></span><span data-i18n="cta.btn">Chat on WhatsApp</span></button>
+  </section>
+
+  <div class="footer-bar">
+    <span data-i18n="footer.copy">Nhal Atlas · Cooperative Tafraout · Morocco</span>
+    <span>contact@nhatatlas.ma</span>
+    <span>+212 6XX XXX XXX</span>
+  </div>
+
+  <!-- CART MODAL -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart(event)">
+    <div class="cart-modal">
+      <div class="cart-modal-head">
+        <span class="cart-modal-title" data-i18n="cart.title">Your cart</span>
+        <button class="cart-modal-close" onclick="closeCartDirect()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="cart-modal-items" id="cartModalItems"></div>
+      <div class="cart-empty" id="cartEmpty">
+        <i class="ti ti-shopping-cart-off"></i>
+        <p data-i18n="cart.empty">Your cart is empty</p>
+      </div>
+      <div class="cart-modal-foot" id="cartModalFoot" style="display:none">
+        <div class="cart-total-row">
+          <span data-i18n="cart.total">Total</span>
+          <span id="cartModalTotal">0 MAD</span>
+        </div>
+        <button class="wa-btn-cart" onclick="orderWhatsApp()">
+          <span class="wa-dot"></span><span data-i18n="cart.whatsapp">Order via WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-float" id="cartFloat" onclick="openCart()">
+    <i class="ti ti-shopping-cart" style="font-size:15px;"></i>
+    <span id="cartNum">0</span> <span id="cartItemLabel">item</span><span id="cartPlural"></span> — <span data-i18n="cart.checkout">checkout</span>
+  </div>
+
+  <script>
+    // ===== STATE =====
+    const imgSrc = '/mnt/user-data/uploads/4817d02401aaba82b54524bb818e2c8e.jpg';
+    const uploadedImages = new Array(8).fill(null);
+    let currentLang = localStorage.getItem('nhal-lang') || 'en';
+    let cartItems = {};
+    let activeFilter = 'all';
+    let currentModalIdx = -1;
+    let currentSize = { label: '250g', mult: 1 };
+
+    // ===== PRODUCT DATA =====
+    const productsData = {
+      en: [
+        { name:'Ajun honey', region:'Azilal, High Atlas · 1,800m', label:'Mountain · Spring', desc:'Light amber with delicate floral notes and a clean, mildly sweet finish. Hand-harvested in late spring when Atlas wildflowers are in full bloom.', attrs:['Raw','Unfiltered','Spring harvest','1,800m altitude','Organic certified'], price:120, category:'mountain', badge:'New', badgeClass:'badge-new', imgPos:'top left', delay:'0.05s' },
+        { name:'Sidr honey', region:'Zagora, South · 800m', label:'Rare · Autumn', desc:'Prized across the Middle East for centuries. Dark golden, thick, and exceptionally rich — with a caramel depth that lingers. Shelf life up to 40 years.', attrs:['Dark amber','Thick texture','Autumn harvest','800m altitude','Up to 40yr shelf life'], price:180, category:'rare', badge:'Rare', badgeClass:'badge-rare', imgPos:'right center', delay:'0.10s' },
+        { name:'Thyme honey', region:'Immouzer, Ifrane · 1,400m', label:'Floral · Herbal', desc:'One of Morocco\'s most beloved everyday honeys. Aromatic with a clean herbal tang from wild thyme that carpets the Ifrane plateau each spring.', attrs:['Herbal','Light amber','Spring','1,400m altitude','Everyday use'], price:95, category:'floral', badge:null, badgeClass:null, imgPos:'center 70%', delay:'0.15s' },
+        { name:'Black seed honey', region:'Boulmane, Atlas · 1,200m', label:'Medicinal · Bold', desc:'Infused with Nigella sativa seeds. Bold and earthy with a distinctive peppery warmth. Taken by the spoonful morning and evening across Morocco.', attrs:['Nigella sativa','Medicinal','Dark amber','Bold flavour','Traditional use'], price:150, category:'medicinal', badge:null, badgeClass:null, imgPos:'left bottom', delay:'0.20s' },
+        { name:'Lavender honey', region:'Ourika Valley · 1,600m', label:'Floral · Seasonal', desc:'Produced during a narrow six-week window when the Ourika Valley erupts in wild lavender. Pale gold, slow to crystallise, and exquisitely delicate.', attrs:['Pale gold','Floral','Summer only','1,600m altitude','Slow crystallisation'], price:110, category:'floral', badge:'Seasonal', badgeClass:'badge-seasonal', imgPos:'50% 30%', delay:'0.25s' },
+        { name:'Wild Atlas honey', region:'Ait Benhaddou · 1,100m', label:'Mountain · Multi-floral', desc:'Our most complex honey. Bees range freely across over 30 wild plant species. The result changes subtly each year: earthy, lightly spiced, endlessly interesting.', attrs:['Multi-floral','30+ species','Complex','1,100m altitude','Vintage variation'], price:135, category:'mountain', badge:null, badgeClass:null, imgPos:'center center', delay:'0.30s' },
+        { name:'Euphorbia honey', region:'Tafraout, Anti-Atlas · 1,000m', label:'Rare · Creamy', desc:'One of the rarest honeys in North Africa. Harvested once every two years. Pale cream to white, with a mild, subtly nutty flavour unlike anything else we produce.', attrs:['White/cream','Extremely rare','Every 2 years','1,000m altitude','Limited stock'], price:165, category:'medicinal', badge:'Rare', badgeClass:'badge-rare', imgPos:'80% 20%', delay:'0.35s' },
+        { name:'Cedar forest honey', region:'Azrou, Middle Atlas · 1,900m', label:'Mountain · Autumn', desc:'Collected near Morocco\'s ancient cedar groves — some trees over 800 years old. Deep amber with resinous, woody undertones and a long, warming finish.', attrs:['Dark amber','Resinous','Autumn','1,900m altitude','Cedar groves'], price:90, category:'mountain', badge:null, badgeClass:null, imgPos:'20% 80%', delay:'0.40s' },
+      ],
+      fr: [
+        { name:'Miel Ajun', region:'Azilal, Haut Atlas · 1 800m', label:'Montagne · Printemps', desc:'Ambre clair avec des notes florales délicates et une fin propre et légèrement sucrée. Récolté à la main fin de printemps lorsque les fleurs sauvages de l\'Atlas sont en pleine floraison.', attrs:['Brut','Non filtré','Récolte printemps','Altitude 1 800m','Certifié bio'], price:120, category:'mountain', badge:'Nouveau', badgeClass:'badge-new', imgPos:'top left', delay:'0.05s' },
+        { name:'Miel Sidr', region:'Zagora, Sud · 800m', label:'Rare · Automne', desc:'Apprécié à travers le Moyen-Orient depuis des siècles. Doré foncé, épais, et exceptionnellement riche avec une profondeur de caramel persistante. Durée de conservation jusqu\'à 40 ans.', attrs:['Ambre foncé','Texture épaisse','Récolte automne','Altitude 800m','Conservation 40 ans'], price:180, category:'rare', badge:'Rare', badgeClass:'badge-rare', imgPos:'right center', delay:'0.10s' },
+        { name:'Miel de thym', region:'Immouzer, Ifrane · 1 400m', label:'Floral · Herbal', desc:'L\'un des miels quotidiens les plus appréciés du Maroc. Aromatique avec une légère pointe herbacée du thym sauvage qui couvre le plateau d\'Ifrane chaque printemps.', attrs:['Herbal','Ambre clair','Printemps','Altitude 1 400m','Usage quotidien'], price:95, category:'floral', badge:null, badgeClass:null, imgPos:'center 70%', delay:'0.15s' },
+        { name:'Miel de nigelle', region:'Boulmane, Atlas · 1 200m', label:'Médicinal · Corsé', desc:'Infusé de graines de Nigelle sativa. Corsé et terreux avec une chaleur poivrée distinctive. Pris à la cuillère matin et soir à travers le Maroc.', attrs:['Nigelle sativa','Médicinal','Ambre foncé','Saveur corsée','Usage traditionnel'], price:150, category:'medicinal', badge:null, badgeClass:null, imgPos:'left bottom', delay:'0.20s' },
+        { name:'Miel de lavande', region:'Vallée de l\'Ourika · 1 600m', label:'Floral · Saisonnier', desc:'Produit pendant une étroite fenêtre de six semaines lorsque la vallée de l\'Ourika explose de lavande sauvage. Or pâle, lent à cristalliser, et délicatement subtil.', attrs:['Or pâle','Floral','Été uniquement','Altitude 1 600m','Cristallisation lente'], price:110, category:'floral', badge:'Saisonnier', badgeClass:'badge-seasonal', imgPos:'50% 30%', delay:'0.25s' },
+        { name:'Miel sauvage Atlas', region:'Aït Benhaddou · 1 100m', label:'Montagne · Multi-floral', desc:'Notre miel le plus complexe. Les abeilles butinent librement plus de 30 espèces de plantes sauvages. Le résultat varie légèrement chaque année : terreux, légèrement épicé.', attrs:['Multi-floral','30+ espèces','Complexe','Altitude 1 100m','Variation millésime'], price:135, category:'mountain', badge:null, badgeClass:null, imgPos:'center center', delay:'0.30s' },
+        { name:'Miel d\'euphorbe', region:'Tafraout, Anti-Atlas · 1 000m', label:'Rare · Crémeux', desc:'L\'un des miels les plus rares d\'Afrique du Nord. Récolté une fois tous les deux ans. Crème pâle à blanc, avec une saveur douce et légèrement noisettée.', attrs:['Blanc/crème','Extrêmement rare','Tous les 2 ans','Altitude 1 000m','Stock limité'], price:165, category:'medicinal', badge:'Rare', badgeClass:'badge-rare', imgPos:'80% 20%', delay:'0.35s' },
+        { name:'Miel de forêt de cèdre', region:'Azrou, Moyen Atlas · 1 900m', label:'Montagne · Automne', desc:'Collecté près des anciennes cédraies du Maroc. Ambre profond avec des notes résineuses et boisées et une fin longue et chaleureuse.', attrs:['Ambre foncé','Résineux','Automne','Altitude 1 900m','Forêts de cèdres'], price:90, category:'mountain', badge:null, badgeClass:null, imgPos:'20% 80%', delay:'0.40s' },
+      ],
+      ar: [
+        { name:'عسل أجون', region:'أزيلال، أطلس الكبير · 1,800م', label:'جبلي · ربيعي', desc:'كهرماني فاتح بنكهات زهرية رقيقة ونهاية حلوة ونظيفة. يُجمع يدوياً في أواخر الربيع عندما تتفتح أزهار الأطلس البرية.', attrs:['خام','غير مصفى','حصاد الربيع','ارتفاع 1,800م','معتمد عضوياً'], price:120, category:'mountain', badge:'جديد', badgeClass:'badge-new', imgPos:'top left', delay:'0.05s' },
+        { name:'عسل السدر', region:'زاكورة، الجنوب · 800م', label:'نادر · خريفي', desc:'محبوب في الشرق الأوسط منذ قرون. ذهبي غامق وكثيف وغني بشكل استثنائي بعمق الكراميل الذي يدوم طويلاً. صلاحية تصل إلى 40 سنة.', attrs:['كهرماني داكن','كثيف القوام','حصاد الخريف','ارتفاع 800م','صلاحية 40 سنة'], price:180, category:'rare', badge:'نادر', badgeClass:'badge-rare', imgPos:'right center', delay:'0.10s' },
+        { name:'عسل الزعتر', region:'إمووزر، إفران · 1,400م', label:'زهري · عشبي', desc:'من أكثر أنواع العسل اليومية محبةً في المغرب. عطري بلمسة عشبية خفيفة من الزعتر البري الذي يغطي هضبة إفران كل ربيع.', attrs:['عشبي','كهرماني فاتح','ربيعي','ارتفاع 1,400م','للاستخدام اليومي'], price:95, category:'floral', badge:null, badgeClass:null, imgPos:'center 70%', delay:'0.15s' },
+        { name:'عسل الحبة السوداء', region:'بولمان، الأطلس · 1,200م', label:'طبي · قوي', desc:'مدعوم بحبوب حبة البركة. جريء وترابي مع دفء فلفلي مميز. يُتناول ملعقة صباحاً ومساءً في المغرب.', attrs:['حبة البركة','طبي','كهرماني داكن','نكهة قوية','استخدام تقليدي'], price:150, category:'medicinal', badge:null, badgeClass:null, imgPos:'left bottom', delay:'0.20s' },
+        { name:'عسل اللافندر', region:'وادي أوريكا · 1,600م', label:'زهري · موسمي', desc:'يُنتج خلال نافذة ضيقة من ستة أسابيع عندما يتفجر وادي أوريكا باللافندر البري. ذهبي شاحب، بطيء التبلور، ورقيق بشكل استثنائي.', attrs:['ذهبي شاحب','زهري','صيف فقط','ارتفاع 1,600م','بطيء التبلور'], price:110, category:'floral', badge:'موسمي', badgeClass:'badge-seasonal', imgPos:'50% 30%', delay:'0.25s' },
+        { name:'عسل أطلس البري', region:'آيت بنحدو · 1,100م', label:'جبلي · متعدد الأزهار', desc:'عسلنا الأكثر تعقيداً. تتجول النحل بحرية عبر أكثر من 30 نوعاً من النباتات البرية. النتيجة تتغير قليلاً كل عام.', attrs:['متعدد الأزهار','30+ نوع','معقد','ارتفاع 1,100م','تنوع سنوي'], price:135, category:'mountain', badge:null, badgeClass:null, imgPos:'center center', delay:'0.30s' },
+        { name:'عسل الفرفيون', region:'تافراوت، الأطلس الصغير · 1,000م', label:'نادر · كريمي', desc:'من أندر أنواع العسل في شمال أفريقيا. يُحصد مرة كل عامين. كريمي شاحب إلى أبيض بنكهة خفيفة ومكسرات.', attrs:['أبيض/كريمي','نادر جداً','كل سنتين','ارتفاع 1,000م','مخزون محدود'], price:165, category:'medicinal', badge:'نادر', badgeClass:'badge-rare', imgPos:'80% 20%', delay:'0.35s' },
+        { name:'عسل غابات الأرز', region:'أزرو، الأطلس المتوسط · 1,900م', label:'جبلي · خريفي', desc:'يُجمع بالقرب من غابات الأرز القديمة في المغرب، بعض أشجارها يتجاوز عمرها 800 عام. كهرماني داكن بنكهات راتينجية وخشبية.', attrs:['كهرماني داكن','راتينجي','خريفي','ارتفاع 1,900م','غابات الأرز'], price:90, category:'mountain', badge:null, badgeClass:null, imgPos:'20% 80%', delay:'0.40s' },
+      ]
+    };
+
+    // ===== UI STRINGS =====
+    const ui = {
+      en: {
+        'nav.products':'Products', 'nav.story':'Our story', 'nav.contact':'Contact',
+        'header.label':'Our collection',
+        'header.title':'Eight honeys,<br><em>one mountain</em>',
+        'header.sub':'Every variety traceable to a specific hive, altitude, and season. Raw, unfiltered, certified organic.',
+        'filter.all':'All', 'filter.mountain':'Mountain', 'filter.floral':'Floral', 'filter.medicinal':'Medicinal', 'filter.rare':'Rare',
+        'sort.featured':'Sort: Featured', 'sort.asc':'Price: Low to High', 'sort.desc':'Price: High to Low',
+        'size.label':'Size', 'modal.add':'Add to cart',
+        'cart.title':'Your cart', 'cart.empty':'Your cart is empty', 'cart.total':'Total',
+        'cart.whatsapp':'Order via WhatsApp', 'cart.checkout':'checkout', 'cart.item':'item',
+        'cta.label':'Ready to order', 'cta.title':"Can't choose? <em>Let us help.</em>",
+        'cta.sub':"Message us on WhatsApp — we'll recommend the right honey for your taste or occasion.",
+        'cta.btn':'Chat on WhatsApp',
+        'empty.msg':'No products in this category.',
+        'footer.copy':'Nhal Atlas · Cooperative Tafraout · Morocco',
+      },
+      fr: {
+        'nav.products':'Produits', 'nav.story':'Notre histoire', 'nav.contact':'Contact',
+        'header.label':'Notre collection',
+        'header.title':'Huit miels,<br><em>une montagne</em>',
+        'header.sub':'Chaque variété traçable jusqu\'à une ruche, une altitude et une saison. Brut, non filtré, certifié bio.',
+        'filter.all':'Tous', 'filter.mountain':'Montagne', 'filter.floral':'Floral', 'filter.medicinal':'Médicinal', 'filter.rare':'Rare',
+        'sort.featured':'Trier : En vedette', 'sort.asc':'Prix : Croissant', 'sort.desc':'Prix : Décroissant',
+        'size.label':'Taille', 'modal.add':'Ajouter au panier',
+        'cart.title':'Votre panier', 'cart.empty':'Votre panier est vide', 'cart.total':'Total',
+        'cart.whatsapp':'Commander via WhatsApp', 'cart.checkout':'commander', 'cart.item':'article',
+        'cta.label':'Prêt à commander', 'cta.title':'Indécis ? <em>Laissez-nous vous aider.</em>',
+        'cta.sub':'Contactez-nous sur WhatsApp — nous vous recommanderons le miel idéal.',
+        'cta.btn':'Discuter sur WhatsApp',
+        'empty.msg':'Aucun produit dans cette catégorie.',
+        'footer.copy':'Nhal Atlas · Coopérative Tafraout · Maroc',
+      },
+      ar: {
+        'nav.products':'المنتجات', 'nav.story':'قصتنا', 'nav.contact':'اتصل بنا',
+        'header.label':'مجموعتنا',
+        'header.title':'ثمانية أنواع،<br><em>جبل واحد</em>',
+        'header.sub':'كل نوع يمكن تتبعه حتى خلية بعينها وارتفاع وموسم محدد. خام، غير مصفى، معتمد عضوياً.',
+        'filter.all':'الكل', 'filter.mountain':'جبلي', 'filter.floral':'زهري', 'filter.medicinal':'طبي', 'filter.rare':'نادر',
+        'sort.featured':'الترتيب: مميز', 'sort.asc':'السعر: من الأقل للأعلى', 'sort.desc':'السعر: من الأعلى للأقل',
+        'size.label':'الحجم', 'modal.add':'أضف إلى السلة',
+        'cart.title':'سلة التسوق', 'cart.empty':'سلتك فارغة', 'cart.total':'المجموع',
+        'cart.whatsapp':'اطلب عبر واتساب', 'cart.checkout':'الدفع', 'cart.item':'منتج',
+        'cta.label':'جاهز للطلب', 'cta.title':'لا تستطيع الاختيار؟ <em>دعنا نساعدك.</em>',
+        'cta.sub':'راسلنا على واتساب — سنرشدك إلى العسل المناسب لذوقك أو مناسبتك.',
+        'cta.btn':'تحدث على واتساب',
+        'empty.msg':'لا توجد منتجات في هذه الفئة.',
+        'footer.copy':'نحل أطلس · تعاونية تافراوت · المغرب',
+      }
+    };
+
+    function t(key) { return (ui[currentLang] && ui[currentLang][key]) || ui.en[key] || key; }
+
+    // ===== LANGUAGE =====
+    function setLang(l) {
+      currentLang = l;
+      localStorage.setItem('nhal-lang', l);
+      document.querySelectorAll('.lb').forEach(b => b.classList.remove('on'));
+      document.querySelector(`.lb[onclick="setLang('${l}')"]`).classList.add('on');
+      document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
+      renderGrid();
+    }
+
+    // ===== GRID =====
+    function renderGrid() {
+      const data = productsData[currentLang];
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = data.map((p, i) => `
+        <div class="pcard" data-category="${p.category}" data-price="${p.price}" data-modal="${i}" style="animation-delay:${p.delay}">
+          ${p.badge ? `<span class="pcard-badge ${p.badgeClass}">${p.badge}</span>` : ''}
+          <div class="pcard-img"><img src="${uploadedImages[i] || imgSrc}" alt="${p.name}" style="object-position:${p.imgPos}" /></div>
+          <div class="pcard-body">
+            <div class="pcard-name">${p.name}</div>
+            <div class="pcard-region">${p.region}</div>
+            <div class="pcard-desc">${p.desc}</div>
+            <div class="pcard-tags">${p.attrs.slice(0,3).map(a => `<span class="ptag">${a}</span>`).join('')}</div>
+            <div class="pcard-foot">
+              <div class="pcard-price">${p.price} MAD <span>/ 250g</span></div>
+              <button class="add-btn" data-add-cart aria-label="Add to cart"><i class="ti ti-plus"></i></button>
+            </div>
+          </div>
+        </div>`).join('');
+      attachImageHandlers();
+      applyFilter();
+    }
+
+    // ===== CART =====
+    document.getElementById('productsGrid').addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-add-cart]');
+      if (btn) { addCart(btn); return; }
+      const card = e.target.closest('[data-modal]');
+      if (card) openModal(+card.dataset.modal);
+    });
+
+    function addCart(btn) {
+      const card = btn.closest('.pcard');
+      const idx = +card.dataset.modal;
+      const p = productsData[currentLang][idx];
+      const key = p.name + ' · 250g';
+      cartItems[key] ? cartItems[key].qty++ : cartItems[key] = { name: key, price: p.price, qty: 1 };
+      btn.classList.add('added');
+      btn.innerHTML = '<i class="ti ti-check"></i>';
+      setTimeout(() => { btn.classList.remove('added'); btn.innerHTML = '<i class="ti ti-plus"></i>'; }, 1200);
+      updateCartFloat();
+    }
+
+    function addCartModal() {
+      if (currentModalIdx < 0) return;
+      const p = productsData[currentLang][currentModalIdx];
+      const price = Math.round(p.price * currentSize.mult / 5) * 5;
+      const key = p.name + ' · ' + currentSize.label;
+      cartItems[key] ? cartItems[key].qty++ : cartItems[key] = { name: key, price, qty: 1 };
+      updateCartFloat();
+      closeModalDirect();
+    }
+
+    function updateCartFloat() {
+      const total = Object.values(cartItems).reduce((s, i) => s + i.qty, 0);
+      document.getElementById('cartNum').textContent = total;
+      document.getElementById('cartItemLabel').textContent = t('cart.item');
+      document.getElementById('cartPlural').textContent = total === 1 ? '' : 's';
+      document.getElementById('cartFloat').classList.toggle('on', total > 0);
+    }
+
+    function openCart() {
+      renderCart();
+      document.getElementById('cartOverlay').classList.add('open');
+    }
+    function closeCart(e) { if (e.target === document.getElementById('cartOverlay')) closeCartDirect(); }
+    function closeCartDirect() { document.getElementById('cartOverlay').classList.remove('open'); }
+
+    document.getElementById('cartModalItems').addEventListener('click', function(e) {
+      const btn = e.target.closest('.qty-btn');
+      if (!btn) return;
+      const key = btn.closest('.cart-item').dataset.key;
+      if (!cartItems[key]) return;
+      cartItems[key].qty += +btn.dataset.delta;
+      if (cartItems[key].qty <= 0) delete cartItems[key];
+      updateCartFloat();
+      renderCart();
+    });
+
+    function renderCart() {
+      const items = Object.values(cartItems).filter(i => i.qty > 0);
+      const itemsEl = document.getElementById('cartModalItems');
+      const footEl = document.getElementById('cartModalFoot');
+      const emptyEl = document.getElementById('cartEmpty');
+      if (items.length === 0) {
+        itemsEl.innerHTML = '';
+        footEl.style.display = 'none';
+        emptyEl.style.display = 'flex';
+        return;
+      }
+      emptyEl.style.display = 'none';
+      footEl.style.display = '';
+      const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+      itemsEl.innerHTML = items.map(item => `
+        <div class="cart-item" data-key="${item.name.replace(/"/g,'&quot;')}">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">${item.price} MAD</div>
+          </div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" data-delta="-1">−</button>
+            <span>${item.qty}</span>
+            <button class="qty-btn" data-delta="1">+</button>
+          </div>
+          <div class="cart-item-subtotal">${item.price * item.qty} MAD</div>
+        </div>`).join('');
+      document.getElementById('cartModalTotal').textContent = total + ' MAD';
+    }
+
+    function orderWhatsApp() {
+      const items = Object.values(cartItems).filter(i => i.qty > 0);
+      if (!items.length) return;
+      const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+      const lines = items.map(i => `- ${i.name} x${i.qty}: ${i.price * i.qty} MAD`).join('\n');
+      const msg = `Hello! I'd like to order from Nhal Atlas:\n\n${lines}\n\nTotal: ${total} MAD\n\nPlease confirm availability. Thank you!`;
+      window.open(`https://wa.me/212600000000?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // ===== FILTER & SORT =====
+    document.querySelectorAll('.ftab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
+        tab.classList.add('on');
+        activeFilter = tab.dataset.filter;
+        applyFilter();
+      });
+    });
+
+    function applyFilter() {
+      const cards = document.querySelectorAll('.pcard');
+      let visible = 0;
+      cards.forEach(c => {
+        const match = activeFilter === 'all' || c.dataset.category === activeFilter;
+        c.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    function sortProducts() {
+      const val = document.getElementById('sortSelect').value;
+      const grid = document.getElementById('productsGrid');
+      const cards = Array.from(grid.querySelectorAll('.pcard'));
+      if (val === 'price-asc') cards.sort((a, b) => +a.dataset.price - +b.dataset.price);
+      else if (val === 'price-desc') cards.sort((a, b) => +b.dataset.price - +a.dataset.price);
+      else cards.sort((a, b) => parseFloat(a.style.animationDelay) - parseFloat(b.style.animationDelay));
+      cards.forEach(c => grid.appendChild(c));
+    }
+
+    // ===== PRODUCT MODAL =====
+    function updateModalPrice() {
+      const p = productsData[currentLang][currentModalIdx];
+      const price = Math.round(p.price * currentSize.mult / 5) * 5;
+      document.getElementById('modalPrice').innerHTML = price + ' MAD <small>/ ' + currentSize.label + '</small>';
+    }
+
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        currentSize = { label: btn.dataset.size, mult: +btn.dataset.mult };
+        updateModalPrice();
+      });
+    });
+
+    function openModal(idx) {
+      currentModalIdx = idx;
+      currentSize = { label: '250g', mult: 1 };
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('on'));
+      document.querySelector('.size-btn[data-size="250g"]').classList.add('on');
+      const p = productsData[currentLang][idx];
+      document.getElementById('modalImg').src = uploadedImages[idx] || imgSrc;
+      document.getElementById('modalLabel').textContent = p.label;
+      document.getElementById('modalName').textContent = p.name;
+      document.getElementById('modalRegion').textContent = p.region;
+      document.getElementById('modalDesc').textContent = p.desc;
+      document.getElementById('modalAttrs').innerHTML = p.attrs.map(a => `<span class="attr">${a}</span>`).join('');
+      updateModalPrice();
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalDirect(); }
+    function closeModalDirect() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCartDirect(); closeModalDirect(); } });
+
+    // ===== IMAGE UPLOAD =====
+    function attachImageHandlers() {
+      document.querySelectorAll('.pcard-img').forEach((imgDiv, i) => {
+        imgDiv.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const input = document.createElement('input');
+          input.type = 'file'; input.accept = 'image/*';
+          input.onchange = () => {
+            if (!input.files[0]) return;
+            const reader = new FileReader();
+            reader.onload = ev => { uploadedImages[i] = ev.target.result; imgDiv.querySelector('img').src = ev.target.result; };
+            reader.readAsDataURL(input.files[0]);
+          };
+          input.click();
+        });
+      });
+    }
+
+    // ===== INIT =====
+    setLang(currentLang);
+  </script>
+</body>
+</html>
