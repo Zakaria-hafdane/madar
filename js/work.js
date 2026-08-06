@@ -86,7 +86,7 @@ popCards.forEach((c, i) => {
 
 // --- LIGHTBOX ---
 const lightbox = document.getElementById('lightbox');
-const backdrop = document.getElementById('lbBackdrop');
+const lightboxBackdrop = document.getElementById('lbBackdrop');
 const lbClose  = document.getElementById('lbClose');
 const lbBody   = document.getElementById('lbBody');
 

@@ -643,3 +643,47 @@ ul { list-style: none; }
 .pop-card.popped {
   animation: none;
 }
+
+/* dropdown menu */
+.dropdown {
+    position: relative;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0; 
+    display: none;
+    min-width: 220px;
+    background: #1b1b1b;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 8px 0;
+    list-style: none;
+    z-index: 1000;
+}
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 16px;
+    color: #fff;
+    text-decoration: none;
+}
+.dropdown-menu li a:hover {
+    background: #2a2a2a;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+@media(max-width:768px){
+
+.dropdown-menu{
+    display:none;
+}
+
+.dropdown.show .dropdown-menu{
+    display:block;
+}
+
+}

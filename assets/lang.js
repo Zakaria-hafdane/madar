@@ -434,14 +434,18 @@ const TRANSLATIONS = {
     en: "Total",
     fr: "Total",
     ar: "\u0627\u0644\u0645\u062c\u0645\u0648\u0639"
-  }
+  },
 };
+
 
 const LANGUAGE_STORAGE_KEY = "arkan-lang";
 const SUPPORTED_LANGUAGES = new Set(["en", "fr", "ar"]);
 let currentLang = "en";
 
 function translate(key, lang = currentLang) {
+  console.log("KEY:", key);
+  console.log("ENTRY:", TRANSLATIONS[key]);
+
   const entry = TRANSLATIONS[key];
   if (!entry) {
     return "";

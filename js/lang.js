@@ -7,14 +7,16 @@ const MADAR_TRANSLATIONS = {
   "page.contact.title": { ar: "تواصل — مدار", en: "Contact — Madar", fr: "Contact — Madar" },
   "page.work.title":    { ar: "أعمالنا — مدار", en: "Our Work — Madar", fr: "Nos Travaux — Madar" },
 
-  // NAV
-  "nav.services": { ar: "الخدمات",    en: "Services",      fr: "Services" },
-  "nav.how":      { ar: "كيف يعمل",   en: "How it works",  fr: "Comment ça marche" },
-  "nav.why":      { ar: "لماذا نحن",  en: "Why us",        fr: "Pourquoi nous" },
-  "nav.work":     { ar: "أعمالنا",    en: "Our work",      fr: "Nos travaux" },
-  "nav.cta":      { ar: "اعمل معنا",  en: "Work with us",  fr: "Travaillez avec nous" },
-  "nav.contact":  { ar: "تواصل",      en: "Contact",       fr: "Contact" },
-  "nav.menu":     { ar: "القائمة",    en: "Menu",          fr: "Menu" },
+ // NAV
+"nav.services": { ar: "الخدمات", en: "Services", fr: "Services" },
+"nav.how":      { ar: "كيف يعمل", en: "How it works", fr: "Comment ça marche" },
+"nav.why":      { ar: "لماذا نحن", en: "Why us", fr: "Pourquoi nous" },
+"nav.work":     { ar: "أعمالنا", en: "Our Work", fr: "Notre Travail" },
+"nav.websites": { ar: "المواقع الإلكترونية", en: "Websites", fr: "Sites Web" },
+"nav.Packaging": { ar: "التعبئة والتغليف", en: "Packaging and Labeling", fr: "Emballage et Étiquetage" },
+"nav.cta":      { ar: "اعمل معنا", en: "Work with us", fr: "Travaillez avec nous" },
+"nav.contact":  { ar: "تواصل", en: "Contact", fr: "Contact" },
+"nav.menu":     { ar: "القائمة", en: "Menu", fr: "Menu" },
 
   // HERO
   "hero.tag": { ar: "وكالة رقمية · المغرب", en: "Digital agency · Morocco", fr: "Agence digitale · Maroc" },
