@@ -145,7 +145,20 @@
 @media (max-width: 700px) {
   .work-grid { grid-template-columns: 1fr; }
   .work-card:first-child { grid-column: auto; }
-  .page-title { font-size: 40px; }
+  .page-hero { padding: 100px 0 3.5rem; }
+  .page-title { font-size: 34px; letter-spacing: -1px; }
+  .page-sub { font-size: 15px; }
+  .work-body { padding: 1.25rem 1.4rem 1.75rem; }
+  .work-stats { gap: 1.25rem; }
+  .work-img { height: 260px; }
+  .work-card-sm .work-img { height: 220px; }
+}
+
+@media (max-width: 380px) {
+  .page-hero { padding: 90px 0 3rem; }
+  .page-title { font-size: 28px; }
+  .work-stats { gap: 1rem; }
+  .ws-n { font-size: 19px; }
 }
 
 /* ---- SCROLL POP ANIMATION ---- */
@@ -178,6 +191,10 @@
 }
 .work-card:hover .click-hint {
   opacity: 1; transform: translateY(0);
+}
+/* Touch devices can't hover — show the hint so tappability is clear */
+@media (hover: none) and (pointer: coarse) {
+  .click-hint { opacity: 1; transform: translateY(0); }
 }
 
 /* ---- LIGHTBOX ---- */
@@ -491,7 +508,9 @@
 
 @media (max-width: 760px) {
   .lb-layout, .lb-layout.no-preview { grid-template-columns: 1fr; }
-  .lb-info { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .lb-iframe-wrap { min-height: 280px; }
+  .lb-info { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 1.4rem; }
+  .lb-iframe-wrap { min-height: 220px; }
   .lb-project-title { font-size: 22px; }
+  .lb-features { grid-template-columns: 1fr; }
+  .lb-stats { gap: 1.25rem; }
 }

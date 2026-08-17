@@ -45,12 +45,93 @@ if (mobileMenu) {
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
+  mobileMenu.querySelectorAll('.mob-dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      toggle.closest('.mob-dropdown').classList.toggle('open');
+    });
+  });
 }
 
 // Escape key closes menu
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMenu();
 });
+
+// Hero "See our work" picker (home page only)
+const workPicker = document.getElementById('workPicker');
+const workPickerBtn = document.getElementById('workPickerBtn');
+const workPickerMenu = workPicker ? workPicker.querySelector('.work-picker-menu') : null;
+if (workPicker && workPickerBtn && workPickerMenu) {
+  // Move the menu to <body>. It must stay position:fixed relative to the
+  // *viewport*, but .hero-btns carries a scroll-reveal animation with a
+  // CSS transform — and any transformed ancestor becomes the containing
+  // block for fixed descendants, silently breaking the math below. Portaling
+  // out avoids that (and also fully escapes .hero's overflow:hidden clip).
+  document.body.appendChild(workPickerMenu);
+
+  let hoverCloseTimer = null;
+  const isOpen = () => workPickerMenu.classList.contains('open');
+
+  function positionWorkPickerMenu() {
+    const btnRect = workPickerBtn.getBoundingClientRect();
+    const menuRect = workPickerMenu.getBoundingClientRect();
+    const margin = 16;
+    const gap = 16;
+    let left = btnRect.left + btnRect.width / 2 - menuRect.width / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - menuRect.width - margin));
+    workPickerMenu.style.left = `${left}px`;
+    workPickerMenu.style.top = `${btnRect.bottom + gap}px`;
+    const arrowLeft = btnRect.left + btnRect.width / 2 - left;
+    workPickerMenu.style.setProperty('--wp-arrow-left', `${arrowLeft}px`);
+  }
+  function openWorkPicker() {
+    clearTimeout(hoverCloseTimer);
+    positionWorkPickerMenu();
+    workPicker.classList.add('open');
+    workPickerMenu.classList.add('open');
+    workPickerBtn.setAttribute('aria-expanded', 'true');
+    // Self-correct one frame later in case the button was still mid-scroll
+    // (e.g. just brought into view by a smooth-scroll) when first measured.
+    requestAnimationFrame(positionWorkPickerMenu);
+  }
+  function closeWorkPicker() {
+    workPicker.classList.remove('open');
+    workPickerMenu.classList.remove('open');
+    workPickerBtn.setAttribute('aria-expanded', 'false');
+  }
+  function scheduleClose() {
+    hoverCloseTimer = setTimeout(closeWorkPicker, 200);
+  }
+
+  workPickerBtn.addEventListener('click', (e) => {
+    // Always-open, not toggle: on a real mouse, the cursor hovers the
+    // button (opening it via mouseenter) *before* the click fires, so a
+    // toggle would immediately re-close what hover just opened.
+    e.stopPropagation();
+    openWorkPicker();
+  });
+  // Menu now lives outside .work-picker in the DOM, so both pieces need
+  // their own hover tracking to keep it open while the cursor crosses
+  // the gap between the button and the portaled menu.
+  workPicker.addEventListener('mouseenter', openWorkPicker);
+  workPicker.addEventListener('mouseleave', scheduleClose);
+  workPickerMenu.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
+  workPickerMenu.addEventListener('mouseleave', scheduleClose);
+  document.addEventListener('click', (e) => {
+    if (!workPicker.contains(e.target) && !workPickerMenu.contains(e.target)) closeWorkPicker();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeWorkPicker();
+  });
+  // Follow the button on scroll/resize rather than closing outright — a
+  // fixed-position menu would otherwise visually detach from its trigger
+  // the instant the page moves (and viewport resizes can themselves fire
+  // an incidental scroll event, e.g. from reflow, so closing on scroll
+  // could race with and undo the resize reposition).
+  const reposition = () => { if (isOpen()) positionWorkPickerMenu(); };
+  window.addEventListener('resize', reposition);
+  window.addEventListener('scroll', reposition, { passive: true });
+}
 
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal-up');

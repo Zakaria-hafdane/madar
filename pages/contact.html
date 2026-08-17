@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/contact.css" />
 </head>
@@ -24,7 +25,7 @@
       <li><a href="../index.html#services"><i class="ti ti-layout-grid" aria-hidden="true"></i><span data-i18n="nav.services">الخدمات</span></a></li>
       <li><a href="../index.html#how"><i class="ti ti-route" aria-hidden="true"></i><span data-i18n="nav.how">كيف يعمل</span></a></li>
       <li><a href="../index.html#why"><i class="ti ti-shield-check" aria-hidden="true"></i><span data-i18n="nav.why">لماذا نحن</span></a></li>
-<li class="dropdown"><a href="work.html"><i class="ti ti-briefcase"></i><span data-i18n="nav.work">أعمالنا</span></a>
+<li class="dropdown"><a href="#" class="dropdown-toggle" role="button" tabindex="0" onclick="return false"><i class="ti ti-briefcase"></i><span data-i18n="nav.work">أعمالنا</span></a>
 <ul class="dropdown-menu"><li><a href="work.html" data-i18n="nav.websites">المواقع الإلكترونية</a></li><li><a href="work2.html" data-i18n="nav.Packaging"> التعبئة والتغليف</a></li></ul></li></ul>
     <div class="lang-switcher">
       <button class="lb" data-lang="ar">ع</button>
@@ -43,7 +44,13 @@
     <a href="../index.html#services"><span data-i18n="nav.services">الخدمات</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <a href="../index.html#how"><span data-i18n="nav.how">كيف يعمل</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <a href="../index.html#why"><span data-i18n="nav.why">لماذا نحن</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <a href="../index.html#work"><span data-i18n="nav.work">أعمالنا</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="mob-dropdown">
+      <button type="button" class="mob-dropdown-toggle"><span data-i18n="nav.work">أعمالنا</span> <svg class="mob-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <div class="mob-submenu">
+        <a href="work.html" data-i18n="nav.websites">المواقع الإلكترونية</a>
+        <a href="work2.html" data-i18n="nav.Packaging">التعبئة والتغليف</a>
+      </div>
+    </div>
     <div class="lang-switcher" style="padding: 0 0 8px;">
       <button class="lb" data-lang="ar">ع</button>
       <button class="lb" data-lang="en">EN</button>

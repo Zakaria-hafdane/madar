@@ -33,6 +33,12 @@ const MADAR_TRANSLATIONS = {
   "hero.btn1":  { ar: "شاهد أعمالنا", en: "See our work",   fr: "Voir nos travaux" },
   "hero.btn2":  { ar: "كيف يعمل",     en: "How it works",  fr: "Comment ça marche" },
   "hero.scroll":{ ar: "تمرير",         en: "scroll",        fr: "défiler" },
+  "hero.wp.websites.sub":  { ar: "مواقع وتجارة إلكترونية",     en: "E-commerce & showcase sites",  fr: "Sites vitrines & e-commerce" },
+  "hero.wp.packaging.sub": { ar: "تصميم العبوات والملصقات",   en: "Labels & product packaging",   fr: "Étiquettes & emballages" },
+
+  // PACKAGING GALLERY (work2.html)
+  "pkg1.desc": { ar: "تصميم علبة عناية طبيعية بالبشرة بلمسة نباتية أنيقة", en: "Natural skincare box design with a refined botanical touch", fr: "Design d'emballage de soin naturel à la touche botanique raffinée" },
+  "pkg2.desc": { ar: "ملصق منتج عسل طبيعي بهوية بصرية دافئة وأصيلة", en: "Natural honey product label with a warm, authentic identity", fr: "Étiquette de miel naturel à l'identité chaleureuse et authentique" },
 
   // MARQUEE
   "mar.honey":      { ar: "تعاونيات العسل",     en: "Honey cooperatives", fr: "Coopératives de miel" },

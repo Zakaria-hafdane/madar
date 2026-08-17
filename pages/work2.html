@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/work2.css" />
 </head>
@@ -31,14 +32,13 @@
             يعمل</span></a></li>
       <li><a href="../index.html#why"><i class="ti ti-shield-check" aria-hidden="true"></i><span
             data-i18n="nav.why">لماذا نحن</span></a></li>
-      <li class="dropdown"><a href="work.html"><i class="ti ti-briefcase"></i><span
+      <li class="dropdown"><a href="#" class="dropdown-toggle" role="button" tabindex="0" onclick="return false"><i class="ti ti-briefcase"></i><span
             data-i18n="nav.work">أعمالنا</span></a>
         <ul class="dropdown-menu">
           <li><a href="work.html" data-i18n="nav.websites">المواقع الإلكترونية</a></li>
           <li><a href="work2.html" data-i18n="nav.project2">المشروع الثاني</a></li>
         </ul>
       </li>
-    </ul>
     </ul>
     <div class="lang-switcher">
       <button class="lb" data-lang="ar">ع</button>
@@ -71,10 +71,16 @@
         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M5 12h14M12 5l7 7-7 7" />
       </svg></a>
-    <a href="work.html"><span data-i18n="nav.work">أعمالنا</span> <svg width="14" height="14" viewBox="0 0 24 24"
-        fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 12h14M12 5l7 7-7 7" />
-      </svg></a>
+    <div class="mob-dropdown">
+      <button type="button" class="mob-dropdown-toggle"><span data-i18n="nav.work">أعمالنا</span> <svg class="mob-caret" width="14" height="14"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg></button>
+      <div class="mob-submenu">
+        <a href="work.html" data-i18n="nav.websites">المواقع الإلكترونية</a>
+        <a href="work2.html" data-i18n="nav.Packaging">التعبئة والتغليف</a>
+      </div>
+    </div>
     <div class="lang-switcher" style="padding: 0 0 8px;">
       <button class="lb" data-lang="ar">ع</button>
       <button class="lb" data-lang="en">EN</button>
@@ -94,20 +100,39 @@
   </section>
   <section class="work-gallery">
 
-    <div class="project-card pop-card" data-project="0">
-      <img src="../assets/images/image3.png">
-      <div class="project-overlay">
-        <h3>Packaging 01</h3>
-        <span>View</span>
+    <div class="pkg-card pop-card" data-project="0">
+      <div class="pkg-media">
+        <img src="../assets/images/image3.png" alt="Packaging 01">
+      </div>
+      <div class="pkg-info">
+        <span class="pkg-num">01</span>
+        <span class="pkg-tag" data-i18n="nav.Packaging">التعبئة والتغليف</span>
+        <h3 class="pkg-title">Packaging 01</h3>
+        <p class="pkg-desc" data-i18n="pkg1.desc">تصميم علبة عناية طبيعية بالبشرة بلمسة نباتية أنيقة</p>
+        <span class="pkg-cta">
+          <span data-i18n="proj.view">عرض المشروع</span>
+          <span class="pkg-cta-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </span>
       </div>
     </div>
 
-
-    <div class="project-card1 pop-card" data-project="1">
-      <img src="../assets/images/image4.png">
-      <div class="project-overlay">
-        <h3>Packaging 02</h3>
-        <span>View</span>
+    <div class="pkg-card pkg-card-rev pop-card" data-project="1">
+      <div class="pkg-media">
+        <img src="../assets/images/image4.png" alt="Packaging 02">
+      </div>
+      <div class="pkg-info">
+        <span class="pkg-num">02</span>
+        <span class="pkg-tag" data-i18n="nav.Packaging">التعبئة والتغليف</span>
+        <h3 class="pkg-title">Packaging 02</h3>
+        <p class="pkg-desc" data-i18n="pkg2.desc">ملصق منتج عسل طبيعي بهوية بصرية دافئة وأصيلة</p>
+        <span class="pkg-cta">
+          <span data-i18n="proj.view">عرض المشروع</span>
+          <span class="pkg-cta-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </span>
       </div>
     </div>
 
@@ -139,6 +164,16 @@
     </div>
   </div>
   <div class="lightbox-backdrop" id="lbBackdrop"></div>
+
+  <!-- IMAGE VIEWER (zoom on top of the packaging lightbox) -->
+  <div class="img-viewer" id="imgViewer">
+    <button class="img-viewer-close" id="imgViewerClose" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <img id="imgViewerImg" src="" alt="">
+  </div>
 
   <footer class="footer">
     <div class="container footer-inner">

@@ -9,45 +9,128 @@
 }
 
 
-.project-card,
-.project-card1{
+/* ---- PACKAGING CARD — split media/info layout ---- */
+.pkg-card{
     position:relative;
+    display:grid;
+    grid-template-columns: 1.2fr 1fr;
     background:#181818;
     border:1px solid rgba(255,255,255,.08);
     border-radius:26px;
     overflow:hidden;
     cursor:pointer;
-    transition:.35s ease;
+    transition:border-color .35s ease, transform .35s ease, box-shadow .35s ease;
 }
+.pkg-card.pkg-card-rev{
+    grid-template-columns: 1fr 1.2fr;
+}
+.pkg-card.pkg-card-rev .pkg-media{ order: 2; }
+.pkg-card.pkg-card-rev .pkg-info{ order: 1; }
 
-
-.project-card:hover,
-.project-card1:hover{
-    transform:translateY(-8px);
+.pkg-card:hover{
+    transform:translateY(-6px);
     border-color:#F5C842;
     box-shadow:0 25px 60px rgba(0,0,0,.45);
 }
 
-/* MAIN IMAGE */
-
-.project-card img{
-    width:100%;
-    height: 650px;
-    object-fit:cover;
-    background:#181818;
-    border-radius:50px;
-    padding: 40px;
-    transition:.3s ease;
+.pkg-media{
+    position:relative;
+    background:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:36px;
+    min-height:420px;
+    overflow:hidden;
 }
-.project-card1 img{
-    width:100%;
-    height: 100%;
-    object-fit:cover;
-    background:#181818;
-    border-radius:26px;
-    padding:15px;
-    transition:.3s ease;
+.pkg-media img{
+    max-width:100%;
+    max-height:440px;
+    width:auto;
+    object-fit:contain;
+    border-radius:14px;
+    filter:drop-shadow(0 20px 40px rgba(0,0,0,.5));
+    transition:transform .5s cubic-bezier(.22,1,.36,1);
 }
+.pkg-card:hover .pkg-media img{
+    transform:scale(1.04);
+}
+.pkg-info{
+    position:relative;
+    z-index:0;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    gap:14px;
+    padding:2.75rem 2.5rem;
+    background: linear-gradient(160deg, #1c1c1c, #151515);
+    overflow:hidden;
+}
+/* Ghost index number — a background flourish behind the panel content,
+   not overlaid on the product photo (its size varies too much to reliably
+   coexist with a fixed-position numeral without one hiding the other). */
+.pkg-num{
+    position:absolute;
+    z-index:-1;
+    top:-0.15em;
+    inset-inline-end:-0.05em;
+    font-family:'Syne', sans-serif;
+    font-size:150px;
+    font-weight:800;
+    color:#F5C842;
+    opacity:.08;
+    line-height:1;
+    letter-spacing:-4px;
+    pointer-events:none;
+}
+.pkg-tag{
+    display:inline-block;
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#F5C842;
+    padding:6px 14px;
+    border-radius:30px;
+    border:1px solid rgba(245,200,66,.3);
+    background:rgba(245,200,66,.08);
+}
+.pkg-title{
+    font-family:'Syne', sans-serif;
+    font-size:30px;
+    font-weight:800;
+    color:#F0F0F0;
+    letter-spacing:-0.5px;
+    line-height:1.1;
+}
+.pkg-desc{
+    font-size:14.5px;
+    color:#888;
+    line-height:1.85;
+    max-width:340px;
+}
+.pkg-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:8px;
+    font-size:13px;
+    font-weight:600;
+    color:#F0F0F0;
+    transition:gap .25s ease, color .25s ease;
+}
+.pkg-cta-arrow{
+    width:30px; height:30px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.15);
+    color:#888;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .25s ease;
+    flex-shrink:0;
+}
+[dir="rtl"] .pkg-cta-arrow svg{ transform: scaleX(-1); }
+.pkg-card:hover .pkg-cta{ color:#F5C842; gap:14px; }
+.pkg-card:hover .pkg-cta-arrow{ border-color:#F5C842; color:#F5C842; background:rgba(245,200,66,.08); }
 
 .page-hero {
   padding: 160px 0 6rem;
@@ -64,34 +147,6 @@
   max-width: 500px; margin: 0 auto;
 }
 
-/* OVERLAY */
-
-.project-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.85),
-        transparent
-    );
-
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    flex-direction:column;
-
-    padding-bottom:35px;
-
-    color:white;
-    opacity:0;
-    transition:.3s;
-}
-
-
-.project-card:hover .project-overlay,
-.project-card1:hover .project-overlay{
-    opacity:1;
-}
 /* LIGHTBOX */
 
 .lightbox{
@@ -150,11 +205,66 @@
     padding:10px;
     border:1px solid rgba(255,255,255,.06);
     transition:.3s ease;
+    cursor: zoom-in;
 }
 
 .package-images img:hover{
     transform:scale(1.03);
     border-color:#F5C842;
+}
+
+/* IMAGE VIEWER (zoom) */
+.img-viewer{
+    position:fixed;
+    inset:0;
+    z-index:100001; /* above .lightbox (99999) and #lbClose (100000) */
+    background:rgba(0,0,0,.92);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+}
+.img-viewer.open{
+    opacity:1;
+    pointer-events:all;
+}
+.img-viewer img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    border-radius:12px;
+    transform:scale(.96);
+    transition:transform .25s cubic-bezier(.22,1,.36,1);
+    background:#181818;
+}
+.img-viewer.open img{
+    transform:scale(1);
+}
+.img-viewer-close{
+    position:fixed;
+    top:25px;
+    right:35px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:0;
+    background:#F5C842;
+    color:#111;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:100002;
+}
+.img-viewer-close:hover{
+    background:#FFD96B;
+}
+
+@media(max-width:768px){
+    .img-viewer{ padding:20px; }
 }
 
 /* CLOSE BUTTON */
@@ -189,10 +299,22 @@ body.popup-open{
 
 @media(max-width:768px){
 
-    .project-card img{
-        height:300px;
-        padding:15px;
+    .pkg-card,
+    .pkg-card.pkg-card-rev{
+        grid-template-columns: 1fr;
     }
+    .pkg-card.pkg-card-rev .pkg-media{ order: 1; }
+    .pkg-card.pkg-card-rev .pkg-info{ order: 2; }
+    .pkg-media{
+        min-height:260px;
+        padding:24px;
+    }
+    .pkg-media img{ max-height:260px; }
+    .pkg-info{
+        padding:1.75rem 1.5rem 2rem;
+    }
+    .pkg-title{ font-size:24px; }
+    .pkg-desc{ max-width:none; }
 
     .lb-inner{
         width:95%;
@@ -205,6 +327,29 @@ body.popup-open{
 
     .package-images img{
         height:170px;
+    }
+
+    .page-hero{
+        padding:100px 0 3.5rem;
+    }
+
+    .page-title{
+        font-size:34px;
+        letter-spacing:-1px;
+    }
+
+    .page-sub{
+        font-size:15px;
+    }
+}
+
+@media(max-width:380px){
+    .page-hero{
+        padding:90px 0 3rem;
+    }
+
+    .page-title{
+        font-size:28px;
     }
 }
 
@@ -422,54 +567,14 @@ body.popup-open{
     
 
 }
-/* MOBILE / TOUCH - show overlay without hover */
+/* MOBILE / TOUCH — no hover state to rely on, so drop the lift/shadow */
 @media (hover: none) and (pointer: coarse){
-
-    .project-overlay{
-        opacity:1;
-        background:linear-gradient(
-            to top,
-            rgba(0,0,0,.85),
-            rgba(0,0,0,.1)
-        );
-
-        padding-bottom:25px;
-    }
-
-
-    .project-card,
-    .project-card1{
-
-        transform:none;
-    }
-
-
-    .project-card:hover,
-    .project-card1:hover{
-
+    .pkg-card,
+    .pkg-card:hover{
         transform:none;
         box-shadow:none;
     }
-
-
-    .project-card img,
-    .project-card1 img{
-
-        height:350px;
-        object-fit:contain;
-    }
-
-
-    .project-overlay h3,
-    .project-overlay p,
-    .project-overlay span,
-    .project-overlay a{
-
-        opacity:1;
-    }
-
 }
-.project-card,
-.project-card1{
+.pkg-card{
     touch-action: manipulation;
 }
