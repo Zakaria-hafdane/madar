@@ -8,17 +8,17 @@ const projects = [
     location: 'Azilal, Atlas Mountains',
     bgClass: 'honey-bg',
     previewUrl: '../assets/preview-honey.html',
-    desc: 'Full e-commerce website with multilingual support (Arabic, French, English), animated hero video, WhatsApp ordering, and integrated logistics. The cooperative went from zero digital presence to receiving online orders across Morocco and Europe.',
+    desc: 'Full e-commerce website with multilingual support (Arabic, French, English), animated hero video, WhatsApp ordering, and integrated logistics. The cooperative went from zero digital presence to receiving online orders across Morocco.',
     features: [
       { label: 'Type', value: 'E-commerce' },
       { label: 'Languages', value: 'Arabic · French · English' },
-      { label: 'Delivery', value: 'Morocco + International' },
+      { label: 'Delivery', value: 'Nationwide (Morocco)' },
       { label: 'Ordering', value: 'Online + WhatsApp' },
     ],
     stats: [
       { n: '4', l: 'Products listed' },
       { n: '3', l: 'Languages' },
-      { n: 'MA·EU', l: 'Markets' },
+      { n: 'MA', l: 'Markets' },
     ]
   },
   {
@@ -28,37 +28,37 @@ const projects = [
     location: 'Souss-Massa, Morocco',
     bgClass: 'argan-bg',
     previewUrl: '../assets/preview-argan.html',
-    desc: 'Premium bilingual website for an argan oil cooperative targeting European and Gulf buyers. Features a full product collection, cooperative story, production process timeline, and WhatsApp cart — all in Arabic, French, and English.',
+    desc: 'Premium bilingual website for an argan oil cooperative targeting buyers across Morocco. Features a full product collection, cooperative story, production process timeline, and WhatsApp cart — all in Arabic, French, and English.',
     features: [
       { label: 'Type', value: 'Showcase + e-commerce' },
       { label: 'Languages', value: 'Arabic · French · English' },
-      { label: 'Target market', value: 'Europe · Gulf' },
+      { label: 'Target market', value: 'Morocco' },
       { label: 'Cart', value: 'WhatsApp checkout' },
     ],
     stats: [
       { n: '4', l: 'Products listed' },
       { n: '3', l: 'Languages' },
-      { n: 'EU·GCC', l: 'Markets' },
+      { n: 'MA', l: 'Markets' },
     ]
   },
   {
     title: 'Kelaat Rose',
-    tag: 'E-commerce · Gulf market',
+    tag: 'E-commerce · Nationwide delivery',
     type: 'Rose water cooperative',
     location: "Kelaat M'Gouna, Draa",
     bgClass: 'rose-bg',
     previewUrl: null,
-    desc: 'E-commerce platform built for Gulf market distribution. Arabic-first RTL design with international shipping setup and WhatsApp ordering in Arabic.',
+    desc: 'E-commerce platform built for nationwide distribution across Morocco. Arabic-first RTL design with delivery setup to every city and WhatsApp ordering in Arabic.',
     features: [
       { label: 'Type', value: 'E-commerce' },
       { label: 'Languages', value: 'Arabic · French' },
-      { label: 'Target market', value: 'Gulf + Morocco' },
+      { label: 'Target market', value: 'Morocco' },
       { label: 'Layout', value: 'Arabic-first (RTL)' },
     ],
     stats: [
       { n: '5', l: 'Products listed' },
       { n: 'RTL', l: 'Arabic-first design' },
-      { n: 'MA·GCC', l: 'Markets' },
+      { n: 'MA', l: 'Markets' },
     ]
   }
 ];

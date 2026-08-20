@@ -14,10 +14,9 @@
 <body>
 
   <nav class="nav scrolled" id="nav">
-    <a href="../index.html" class="logo">
-      <div class="logo-mark">
-        <div class="logo-ring"></div>
-        <div class="logo-dot"></div>
+    <a href="/" class="logo">
+      <div class="logo-spin-wrap" id="logoWrap">
+        <img src="../assets/logo-en.png" id="logoImg" class="logo-img" alt="Madar logo" />
       </div>
       <span class="logo-name">ma<em>dar</em></span>
     </a>
@@ -69,22 +68,22 @@
           <p class="contact-sub reveal-delay-2" data-i18n="contact.sub">نعمل مع عدد محدود من التعاونيات في كل مرة. أخبرنا عن منتجاتك وسنعود إليك في غضون 24 ساعة.</p>
 
           <div class="contact-ways reveal-delay-3">
-            <a href="https://wa.me/212600000000" class="cway" target="_blank">
+            <a href="https://wa.me/212681608313" class="cway" target="_blank">
               <div class="cway-icon green">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               </div>
               <div>
                 <div class="cway-title" data-i18n="cway.wa.title">واتساب</div>
-                <div class="cway-sub">+212 6XX XXX XXX</div>
+                <div class="cway-sub">+212 681-608313</div>
               </div>
             </a>
-            <a href="mailto:hello@madar.ma" class="cway">
+            <a href="mailto:support@madar.it.com" class="cway">
               <div class="cway-icon yellow">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               </div>
               <div>
                 <div class="cway-title" data-i18n="cway.email.title">البريد الإلكتروني</div>
-                <div class="cway-sub">hello@madar.ma</div>
+                <div class="cway-sub">support@madar.it.com</div>
               </div>
             </a>
             <div class="cway">
@@ -108,23 +107,23 @@
 
             <div class="form-group">
               <label class="form-label" data-i18n="form.coop">اسم التعاونية</label>
-              <input type="text" class="form-input" data-i18n-placeholder="form.coop.ph" placeholder="مثال: تعاونية تافراوت للأركان" />
+              <input type="text" id="fCoop" class="form-input" data-i18n-placeholder="form.coop.ph" placeholder="مثال: تعاونية تافراوت للأركان" />
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" data-i18n="form.name">اسمك</label>
-                <input type="text" class="form-input" data-i18n-placeholder="form.name.ph" placeholder="اسمك" />
+                <input type="text" id="fName" class="form-input" data-i18n-placeholder="form.name.ph" placeholder="اسمك" />
               </div>
               <div class="form-group">
                 <label class="form-label" data-i18n="form.wa.label">رقم واتساب</label>
-                <input type="tel" class="form-input" placeholder="+212 6XX XXX XXX" />
+                <input type="tel" id="fWa" class="form-input" placeholder="+212 6XX XXX XXX" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label" data-i18n="form.products">ماذا تبيع؟</label>
-              <div class="product-tags">
+              <div class="product-tags" id="fTags">
                 <button class="ptag" onclick="toggleTag(this)" data-i18n="ptag.honey">عسل</button>
                 <button class="ptag" onclick="toggleTag(this)" data-i18n="ptag.argan">زيت الأركان</button>
                 <button class="ptag" onclick="toggleTag(this)" data-i18n="ptag.rose">ماء الورد</button>
@@ -138,12 +137,12 @@
 
             <div class="form-group">
               <label class="form-label" data-i18n="form.location.label">أين تتواجد؟</label>
-              <input type="text" class="form-input" data-i18n-placeholder="form.location.ph" placeholder="مدينة / منطقة في المغرب" />
+              <input type="text" id="fLocation" class="form-input" data-i18n-placeholder="form.location.ph" placeholder="مدينة / منطقة في المغرب" />
             </div>
 
             <div class="form-group">
               <label class="form-label" data-i18n="form.message.label">أي شيء آخر يجب أن نعرفه؟</label>
-              <textarea class="form-input form-textarea" data-i18n-placeholder="form.message.ph" placeholder="أخبرنا عن منتجاتك، كم تبيع، من هم عملاؤك الحاليون..."></textarea>
+              <textarea id="fMessage" class="form-input form-textarea" data-i18n-placeholder="form.message.ph" placeholder="أخبرنا عن منتجاتك، كم تبيع، من هم عملاؤك الحاليون..."></textarea>
             </div>
 
             <button class="form-submit" onclick="handleSubmit(this)">
@@ -188,8 +187,8 @@
         </div>
         <div class="footer-col">
           <span class="col-title" data-i18n="footer.col.contact">تواصل</span>
-          <a href="mailto:hello@madar.ma">hello@madar.ma</a>
-          <a href="https://wa.me/212600000000">WhatsApp</a>
+          <a href="mailto:support@madar.it.com">support@madar.it.com</a>
+          <a href="https://wa.me/212681608313">WhatsApp</a>
           <a href="#">Instagram</a>
         </div>
       </div>
@@ -203,11 +202,39 @@
   <script src="../js/main.js"></script>
   <script src="../js/lang.js"></script>
   <script>
+    const CONTACT_FORM_WA_NUMBER = "212681608313";
+
     function toggleTag(el) { el.classList.toggle('active'); }
+
+    function buildContactMessage() {
+      const coop     = document.getElementById('fCoop').value.trim();
+      const name     = document.getElementById('fName').value.trim();
+      const wa       = document.getElementById('fWa').value.trim();
+      const location = document.getElementById('fLocation').value.trim();
+      const message  = document.getElementById('fMessage').value.trim();
+      const tags     = Array.from(document.querySelectorAll('#fTags .ptag.active')).map(t => t.textContent.trim());
+
+      const lines = [
+        'New cooperative inquiry from madar.coop:',
+        coop ? `Cooperative: ${coop}` : null,
+        name ? `Name: ${name}` : null,
+        wa ? `WhatsApp: ${wa}` : null,
+        tags.length ? `Sells: ${tags.join(', ')}` : null,
+        location ? `Location: ${location}` : null,
+        message ? `Message: ${message}` : null,
+      ].filter(Boolean);
+
+      return lines.join('\n');
+    }
+
     function handleSubmit(btn) {
       const span = btn.querySelector('span[data-i18n]');
       if (span) span.textContent = window.madarI18n ? window.madarI18n.translate('form.sending') : 'Sending...';
       btn.disabled = true;
+
+      const text = encodeURIComponent(buildContactMessage());
+      window.open(`https://wa.me/${CONTACT_FORM_WA_NUMBER}?text=${text}`, '_blank');
+
       setTimeout(() => {
         btn.style.display = 'none';
         document.getElementById('formSuccess').style.display = 'flex';

@@ -32,6 +32,13 @@ body {
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: all 0.4s ease;
+}
+
+/* Language switch: forces every element to animate its layout/style delta
+   instead of snapping, while the RTL/LTR flip is in flight (see main.js). */
+body.lang-transitioning * {
+  transition: all 0.35s ease !important;
 }
 
 h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
@@ -120,7 +127,9 @@ ul { list-style: none; }
   border: 1px solid rgba(255,255,255,0.07);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  /* "all" already covers flex-direction/padding, so the RTL flex-flip and
+     nav padding shift ride the same smooth curve as everything else. */
+  transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 .nav.scrolled {
   background: rgba(17,17,17,0.92);
@@ -158,6 +167,10 @@ ul { list-style: none; }
   color: var(--text); letter-spacing: 0.5px;
 }
 .logo-name em { color: var(--y); font-style: normal; }
+
+.logo-spin-wrap { width: 38px; height: 38px; flex-shrink: 0; }
+.logo-img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+.logo-img.spinning { transform: rotate(360deg); }
 
 /* NAV LINKS — icon + text style */
 .nav-links {

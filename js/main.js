@@ -184,3 +184,22 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 document.querySelectorAll('.marquee-track').forEach(track => {
   track.innerHTML += track.innerHTML;
 });
+
+// Logo swap on language change — spins the mark, swaps AR/EN artwork mid-spin
+function switchLogo(lang) {
+  const img = document.getElementById('logoImg');
+  if (!img) return;
+  const file = lang === 'ar' ? 'logo-ar.png' : 'logo-en.png';
+  img.classList.add('spinning');
+  setTimeout(() => {
+    img.src = img.src.replace(/logo-(ar|en)\.png$/, file);
+  }, 300);
+  setTimeout(() => {
+    img.classList.remove('spinning');
+  }, 600);
+}
+window.switchLogo = switchLogo;
+
+document.querySelectorAll('.lb[data-lang]').forEach(btn => {
+  btn.addEventListener('click', () => switchLogo(btn.dataset.lang));
+});

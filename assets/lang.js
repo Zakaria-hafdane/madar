@@ -282,9 +282,9 @@ const TRANSLATIONS = {
     ar: "\u062a\u0639\u0628\u0626\u0629 \u0627\u0644\u0642\u0646\u0627\u0646\u064a"
   },
   "proc.s4.d": {
-    en: "Each batch is filtered lightly, labeled, and packed for local delivery or export.",
-    fr: "Chaque lot est legerement filtre, etiquete et emballe pour la livraison locale ou l'exportation.",
-    ar: "\u0643\u0644 \u062f\u0641\u0639\u0629 \u062a\u064f\u0635\u0641\u0649 \u0628\u062e\u0641\u0629 \u0648\u062a\u0648\u0633\u0645 \u0648\u062a\u063a\u0644\u0641 \u0644\u0644\u062a\u0648\u0635\u064a\u0644 \u0627\u0644\u0645\u062d\u0644\u064a \u0623\u0648 \u0627\u0644\u062a\u0635\u062f\u064a\u0631."
+    en: "Each batch is filtered lightly, labeled, and packed for delivery across Morocco.",
+    fr: "Chaque lot est legerement filtre, etiquete et emballe pour la livraison partout au Maroc.",
+    ar: "\u0643\u0644 \u062f\u0641\u0639\u0629 \u062a\u064f\u0635\u0641\u0649 \u0628\u062e\u0641\u0629 \u0648\u062a\u0648\u0633\u0645 \u0648\u062a\u063a\u0644\u0641 \u0644\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u062c\u0645\u064a\u0639 \u0645\u062f\u0646 \u0627\u0644\u0645\u063a\u0631\u0628."
   },
 
   "cta.kicker": {
@@ -298,9 +298,9 @@ const TRANSLATIONS = {
     ar: "\u0630\u0648\u0642\u0648\u0627<br><em>\u0627\u0644\u0623\u0637\u0644\u0633</em>"
   },
   "cta.sub": {
-    en: "Shipping across Morocco and worldwide. Minimum order 2 bottles. Fresh from the cooperative to your door.",
-    fr: "Livraison partout au Maroc et dans le monde. Commande minimale de 2 bouteilles. Frais de la cooperative jusqu'a votre porte.",
-    ar: "\u0627\u0644\u0634\u062d\u0646 \u0639\u0628\u0631 \u0627\u0644\u0645\u063a\u0631\u0628 \u0648\u0627\u0644\u0639\u0627\u0644\u0645. \u0627\u0644\u062d\u062f \u0627\u0644\u0623\u062f\u0646\u0649 \u0642\u0646\u064a\u0646\u062a\u0627\u0646. \u0645\u0646 \u0627\u0644\u062a\u0639\u0627\u0648\u0646\u064a\u0629 \u0625\u0644\u0649 \u0628\u0627\u0628\u0643 \u0645\u0628\u0627\u0634\u0631\u0629."
+    en: "Shipping across Morocco. Minimum order 2 bottles. Fresh from the cooperative to your door.",
+    fr: "Livraison partout au Maroc. Commande minimale de 2 bouteilles. Frais de la cooperative jusqu'a votre porte.",
+    ar: "\u0627\u0644\u0634\u062d\u0646 \u0639\u0628\u0631 \u062c\u0645\u064a\u0639 \u0645\u062f\u0646 \u0627\u0644\u0645\u063a\u0631\u0628. \u0627\u0644\u062d\u062f \u0627\u0644\u0623\u062f\u0646\u0649 \u0642\u0646\u064a\u0646\u062a\u0627\u0646. \u0645\u0646 \u0627\u0644\u062a\u0639\u0627\u0648\u0646\u064a\u0629 \u0625\u0644\u0649 \u0628\u0627\u0628\u0643 \u0645\u0628\u0627\u0634\u0631\u0629."
   },
   "cta.btn": {
     en: "Order via WhatsApp",

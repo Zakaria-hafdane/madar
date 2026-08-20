@@ -21,14 +21,14 @@ const MADAR_TRANSLATIONS = {
   // HERO
   "hero.tag": { ar: "وكالة رقمية · المغرب", en: "Digital agency · Morocco", fr: "Agence digitale · Maroc" },
   "hero.title": {
-    ar: 'نضع التعاونيات<br><em class="gold">على الإنترنت</em> ونبقيها<br><span class="thin">تبيع باستمرار</span>',
-    en: 'We put cooperatives<br><em class="gold">online</em> and keep<br><span class="thin">them selling</span>',
-    fr: 'Nous mettons les coopératives<br><em class="gold">en ligne</em> et les gardons<br><span class="thin">en vente</span>'
+    ar: 'نضع تعاونيتك<br><em class="gold">على الإنترنت</em><br><span class="thin">ونضمن استمرارية مبيعاتك</span>',
+    en: 'We put your cooperative<br><em class="gold">online</em> and keep<br><span class="thin">it selling</span>',
+    fr: 'Nous mettons votre coopérative<br><em class="gold">en ligne</em> et la gardons<br><span class="thin">en vente</span>'
   },
   "hero.sub": {
-    ar: "نبني ونُدير وننمّي الحضور الرقمي للتعاونيات المغربية للمنتجات الطبيعية — حتى يركزوا على الصناعة، ونحن نتولى الباقي.",
-    en: "We build, manage, and grow the digital presence of Moroccan natural product cooperatives — so they focus on making, we handle the rest.",
-    fr: "Nous construisons, gérons et développons la présence numérique des coopératives marocaines de produits naturels — elles se concentrent sur la fabrication, nous gérons le reste."
+    ar: "نبني ونُدير وننمّي الحضور الرقمي لتعاونيتك المغربية للمنتجات الطبيعية — حتى تركز على الصناعة، ونحن نتولى الباقي.",
+    en: "We build, manage, and grow the digital presence of your Moroccan natural product cooperative — so you focus on making, we handle the rest.",
+    fr: "Nous construisons, gérons et développons la présence numérique de votre coopérative marocaine de produits naturels — vous vous concentrez sur la fabrication, nous gérons le reste."
   },
   "hero.btn1":  { ar: "شاهد أعمالنا", en: "See our work",   fr: "Voir nos travaux" },
   "hero.btn2":  { ar: "كيف يعمل",     en: "How it works",  fr: "Comment ça marche" },
@@ -55,60 +55,60 @@ const MADAR_TRANSLATIONS = {
   // SERVICES
   "sec.services.tag":   { ar: "ما نفعله",  en: "What we do",       fr: "Ce que nous faisons" },
   "sec.services.title": {
-    ar: 'كل ما <em class="gold">يحتاجونه</em>',
+    ar: 'كل ما تحتاجه <em class="gold">لتوسيع نطاق</em> تعاونيتك',
     en: 'Everything they <em class="gold">need</em>',
     fr: 'Tout ce dont ils ont <em class="gold">besoin</em>'
   },
   "sec.services.sub": {
-    ar: "من بناء الموقع إلى تسليم الطلب — نتولى الدورة الكاملة حتى تركز التعاونيات على حرفتها",
-    en: "From building the website to delivering the order — we handle the full cycle so cooperatives focus on their craft",
-    fr: "De la création du site à la livraison de la commande — nous gérons le cycle complet pour que les coopératives se concentrent sur leur métier"
+    ar: "من بناء الموقع إلى تسليم الطلب — نتولى الدورة الكاملة حتى تركز تعاونيتك على حرفتها",
+    en: "From building the website to delivering the order — we handle the full cycle so your cooperative can focus on its craft",
+    fr: "De la création du site à la livraison de la commande — nous gérons le cycle complet pour que votre coopérative se concentre sur son métier"
   },
   "svc1.title":  { ar: "موقع إلكتروني وتجارة إلكترونية", en: "Website & e-commerce",   fr: "Site web & e-commerce" },
   "svc1.body":   {
-    ar: "مواقع متعددة اللغات احترافية مع متجر إلكتروني كامل — مبنية ومصممة لجذب المشترين المحليين والدوليين.",
-    en: "Professional multilingual websites with full online store — built and designed to attract local and international buyers.",
-    fr: "Sites multilingues professionnels avec boutique en ligne complète — conçus pour attirer les acheteurs locaux et internationaux."
+    ar: "مواقع متعددة اللغات احترافية مع متجر إلكتروني كامل — مبنية ومصممة لجذب المشترين في جميع أنحاء المغرب.",
+    en: "Professional multilingual websites with full online store — built and designed to attract buyers across Morocco.",
+    fr: "Sites multilingues professionnels avec boutique en ligne complète — conçus pour attirer les acheteurs partout au Maroc."
   },
   "svc1.footer": { ar: "عربي · فرنسي · إنجليزي",    en: "Arabic · French · English", fr: "Arabe · Français · Anglais" },
-  "svc2.title":  { ar: "إدارة الطلبات",               en: "Order management",          fr: "Gestion des commandes" },
+  "svc2.title":  { ar: "إدارة الطلبات ومركز الاتصال",  en: "Order management & call center", fr: "Gestion des commandes & centre d'appel" },
   "svc2.body":   {
-    ar: "نستقبل الطلبات ونتنسق مع التعاونية ونوجه كل شيء لشريكنا في التوصيل — بدون أي جهد من طرفهم.",
-    en: "We receive orders, coordinate with the cooperative, and route everything to our delivery partner — zero effort on their end.",
-    fr: "Nous recevons les commandes, coordinons avec la coopérative et acheminons tout vers notre partenaire de livraison — sans effort de leur part."
+    ar: "فريق محترف يتولى ربط الاتصال بالزبناء، تأكيد الطلبيات فوراً، وتحديث لوحة تحكمك المباشرة لمتابعة التدفقات المالية درهماً بدرهم.",
+    en: "A dedicated team handles customer calls, confirms orders instantly, and updates your live dashboard so you can track every dirham.",
+    fr: "Une équipe dédiée gère les appels clients, confirme les commandes instantanément et met à jour votre tableau de bord en direct pour suivre chaque dirham."
   },
   "svc2.footer": { ar: "تتبع في الوقت الفعلي", en: "Real-time tracking",          fr: "Suivi en temps réel" },
-  "svc3.title":  { ar: "التوصيل واللوجستيك",   en: "Delivery & logistics",        fr: "Livraison & logistique" },
+  "svc3.title":  { ar: "إدارة اللوجستيك والتوصيل الوطني",   en: "Logistics & nationwide delivery",        fr: "Logistique & livraison nationale" },
   "svc3.body":   {
-    ar: "من خلال شريكنا اللوجستي نتولى التخزين والشحن والتوصيل — عبر المغرب ودولياً إلى أوروبا والخليج.",
-    en: "Through our logistics partner we handle storage, shipping, and delivery — across Morocco and internationally to Europe and the Gulf.",
-    fr: "Via notre partenaire logistique, nous gérons le stockage, l'expédition et la livraison — partout au Maroc et à l'international vers l'Europe et le Golfe."
+    ar: "نتولى تصميم الهوية البصرية والملصقات الفاخرة للعبوات، تجهيز الطلبيات، والتوصيل السريع لجميع مدن المملكة المغربية (خلال 2 إلى 3 أيام كحد أقصى) مع تحصيل الأموال يوم التسليم.",
+    en: "We design the visual identity and premium packaging labels, prepare orders, and deliver fast to every city in Morocco (within 2 to 3 days max) with cash collected on delivery.",
+    fr: "Nous concevons l'identité visuelle et les étiquettes d'emballage haut de gamme, préparons les commandes et livrons rapidement dans toutes les villes du Maroc (en 2 à 3 jours maximum) avec encaissement à la livraison."
   },
-  "svc3.footer": { ar: "المغرب · أوروبا · الخليج", en: "Morocco · Europe · Gulf", fr: "Maroc · Europe · Golfe" },
+  "svc3.footer": { ar: "جميع مدن المغرب", en: "All cities in Morocco", fr: "Toutes les villes du Maroc" },
 
   // HOW IT WORKS
-  "sec.how.tag":   { ar: "العملية",   en: "The process",  fr: "Le processus" },
+  "sec.how.tag":   { ar: "كيف نعمل",   en: "How we work",  fr: "Comment nous travaillons" },
   "sec.how.title": {
-    ar: 'بسيط <em class="gold">لهم</em>',
-    en: 'Simple for <em class="gold">them</em>',
-    fr: 'Simple pour <em class="gold">eux</em>'
+    ar: 'منظومة عمل بسيطة<em class="gold">.. ونتائج ملموسة</em>',
+    en: 'A simple system<em class="gold">.. tangible results</em>',
+    fr: 'Un système simple<em class="gold">.. des résultats concrets</em>'
   },
   "sec.how.sub": {
-    ar: "التعاونية تفعل شيئاً واحداً — تصنع منتجات رائعة. كل الباقي علينا.",
-    en: "The cooperative does one thing — make great products. Everything else is on us.",
-    fr: "La coopérative fait une seule chose — fabriquer de grands produits. Tout le reste est à notre charge."
+    ar: "تعاونيتك تركز على شيء واحد: تصنيع منتجات رائعة.. وكل الباقي علينا.",
+    en: "Your cooperative focuses on one thing: making great products.. everything else is on us.",
+    fr: "Votre coopérative se concentre sur une seule chose : fabriquer d'excellents produits.. tout le reste est à notre charge."
   },
   "step1.title": { ar: "نبني الموقع",       en: "We build the site",   fr: "Nous créons le site" },
   "step1.body":  {
-    ar: "موقع احترافي بالعربية والفرنسية والإنجليزية — مصمم خصيصاً لمنتجاتهم وقصتهم وهويتهم.",
-    en: "Professional website in Arabic, French and English — tailored to their products, story, and brand identity.",
-    fr: "Site professionnel en arabe, français et anglais — adapté à leurs produits, leur histoire et leur identité de marque."
+    ar: "موقع احترافي بالعربية والفرنسية والإنجليزية — مصمم خصيصاً لمنتجاتك وقصتك وهويتك.",
+    en: "Professional website in Arabic, French and English — tailored to your products, story, and brand identity.",
+    fr: "Site professionnel en arabe, français et anglais — adapté à vos produits, votre histoire et votre identité de marque."
   },
-  "step2.title": { ar: "يرسلون المخزون",   en: "They send stock",      fr: "Ils envoient le stock" },
+  "step2.title": { ar: "ترسل مخزونك",   en: "You send stock",      fr: "Vous envoyez le stock" },
   "step2.body":  {
-    ar: "ترسل التعاونية منتجاتها لشريكنا اللوجستي الذي يتولى التخزين وإدارة كل شيء.",
-    en: "The cooperative sends their products to our logistics partner who stores and handles everything from there.",
-    fr: "La coopérative envoie ses produits à notre partenaire logistique qui stocke et gère tout à partir de là."
+    ar: "ترسل تعاونيتك منتجاتها لشريكنا اللوجستي الذي يتولى التخزين وإدارة كل شيء.",
+    en: "Your cooperative sends its products to our logistics partner who stores and handles everything from there.",
+    fr: "Votre coopérative envoie ses produits à notre partenaire logistique qui stocke et gère tout à partir de là."
   },
   "step3.title": { ar: "تأتي الطلبات",     en: "Orders come in",       fr: "Les commandes arrivent" },
   "step3.body":  {
@@ -118,34 +118,34 @@ const MADAR_TRANSLATIONS = {
   },
   "step4.title": { ar: "نوصّل",             en: "We deliver",           fr: "Nous livrons" },
   "step4.body":  {
-    ar: "يوصل شريكنا للعميل. تحصل التعاونية على حصتها. بسيط ونظيف.",
-    en: "Our partner delivers to the customer's door. The cooperative gets paid their share. Clean and simple.",
-    fr: "Notre partenaire livre à la porte du client. La coopérative reçoit sa part. Propre et simple."
+    ar: "يوصل شريكنا للعميل. تحصل تعاونيتك على حصتها. بسيط ونظيف.",
+    en: "Our partner delivers to the customer's door. Your cooperative gets paid its share. Clean and simple.",
+    fr: "Notre partenaire livre à la porte du client. Votre coopérative reçoit sa part. Propre et simple."
   },
 
   // WHY US
   "sec.why.tag":   { ar: "لماذا مدار",  en: "Why Madar",  fr: "Pourquoi Madar" },
   "sec.why.title": {
-    ar: 'مبني <em class="gold">للتعاونيات</em>',
-    en: 'Built for <em class="gold">cooperatives</em>',
-    fr: 'Conçu pour les <em class="gold">coopératives</em>'
+    ar: 'مبني خصيصاً <em class="gold">للتغلب على عوائق التعاونيات</em>',
+    en: 'Built specifically <em class="gold">to overcome cooperatives\' obstacles</em>',
+    fr: 'Conçu spécifiquement <em class="gold">pour surmonter les obstacles des coopératives</em>'
   },
   "sec.why.sub": {
-    ar: "نحن لسنا وكالة عادية — نفهم نظام التعاونيات المغربية وبنينا كل شيء حوله",
-    en: "We're not a generic agency — we understand the Moroccan cooperative ecosystem and built everything around it",
-    fr: "Nous ne sommes pas une agence générique — nous comprenons l'écosystème coopératif marocain et avons tout construit autour de ça"
+    ar: "لسنا وكالة تسويق تقليدية تبيع الخدمات وتغادر، بل نحن منظومة شراكة متكاملة تقاسمك المخاطر وتفتح لك آفاق النمو.",
+    en: "We're not a traditional marketing agency that sells services and leaves — we're a full partnership system that shares your risk and opens up growth for you.",
+    fr: "Nous ne sommes pas une agence marketing traditionnelle qui vend des services et repart — nous sommes un système de partenariat complet qui partage vos risques et vous ouvre la voie de la croissance."
   },
-  "why1.title": { ar: "وصول دولي",              en: "International reach",       fr: "Portée internationale" },
+  "why1.title": { ar: "الوصول لشرائح وزبناء جدد وطنياً",              en: "Reach new customer segments nationwide",       fr: "Atteindre de nouveaux segments de clients à l'échelle nationale" },
   "why1.body":  {
-    ar: "تصل منتجاتك للعملاء في المغرب وأوروبا والخليج — بلغتهم وخيارات الدفع المألوفة لهم.",
-    en: "Your products reach customers in Morocco, Europe, and the Gulf — in their language, with familiar payment options.",
-    fr: "Vos produits atteignent les clients au Maroc, en Europe et dans le Golfe — dans leur langue, avec des options de paiement familières."
+    ar: "نخرج منتجاتك من النطاق المحلي والمعارض الموسمية لنفتح لك أبواب المبيعات الكبرى وقاعدة زبناء جدد في جميع أقاليم ومدن المملكة المغربية.",
+    en: "We take your products beyond the local scope and seasonal fairs to open the doors to major sales and a new customer base across every region and city in Morocco.",
+    fr: "Nous faisons sortir vos produits du cadre local et des foires saisonnières pour vous ouvrir les portes de grandes ventes et d'une nouvelle clientèle dans toutes les régions et villes du Maroc."
   },
-  "why2.title": { ar: "عمولة فقط للبداية",    en: "Commission only to start",  fr: "Commission uniquement pour démarrer" },
+  "why2.title": { ar: "شراكة آمنة: 0 درهم على الروتور",    en: "Safe partnership: 0 dirhams on returns",  fr: "Partenariat sûr : 0 dirham sur les retours" },
   "why2.body":  {
-    ar: "لا رسوم إدارية كبيرة مسبقاً. نأخذ نسبة لكل بيع — نجاحك هو نجاحنا، لا أكثر.",
-    en: "No big management fees upfront. We take a percentage per sale — your success is our success, nothing more.",
-    fr: "Pas de frais de gestion importants à l'avance. Nous prenons un pourcentage par vente — votre succès est notre succès, rien de plus."
+    ar: "نتقاضى عمولتنا البسيطة فقط بعد تسليم الطلبية واستلامك لمستحقاتك المالية. نتحمل مخاطرة المرجوعات (الروتور) بالكامل لحماية أرباحك.",
+    en: "We only take our small commission after the order is delivered and you've received your payment. We absorb the full risk of returns to protect your profits.",
+    fr: "Nous ne prenons notre petite commission qu'après la livraison de la commande et la réception de votre paiement. Nous assumons entièrement le risque des retours pour protéger vos profits."
   },
   "why3.title": { ar: "شخص تواصل مخصص",       en: "Dedicated contact person",  fr: "Personne de contact dédiée" },
   "why3.body":  {
@@ -258,9 +258,9 @@ const MADAR_TRANSLATIONS = {
   "proj0.type":     { ar: "تعاونية عسل",                en: "Honey cooperative",           fr: "Coopérative de miel" },
   "proj0.location": { ar: "أزيلال، جبال الأطلس",        en: "Azilal, Atlas Mountains",     fr: "Azilal, Montagnes de l'Atlas" },
   "proj0.desc":     {
-    ar: "موقع تجارة إلكترونية كامل بدعم متعدد اللغات، طلب عبر واتساب، ولوجستيك متكامل. منتجات تُشحن عبر المغرب وإلى أوروبا.",
-    en: "Full e-commerce website with multilingual support, WhatsApp ordering, and integrated logistics. Products shipped across Morocco and to Europe.",
-    fr: "Site e-commerce complet avec support multilingue, commande WhatsApp et logistique intégrée. Produits expédiés partout au Maroc et en Europe."
+    ar: "موقع تجارة إلكترونية كامل بدعم متعدد اللغات، طلب عبر واتساب، ولوجستيك متكامل. منتجات تُشحن لجميع مدن المغرب.",
+    en: "Full e-commerce website with multilingual support, WhatsApp ordering, and integrated logistics. Products shipped to every city in Morocco.",
+    fr: "Site e-commerce complet avec support multilingue, commande WhatsApp et logistique intégrée. Produits expédiés dans toutes les villes du Maroc."
   },
   "proj0.stat1": { ar: "منتجات مدرجة", en: "Products listed",  fr: "Produits listés" },
   "proj0.stat2": { ar: "لغات",          en: "Languages",        fr: "Langues" },
@@ -270,18 +270,18 @@ const MADAR_TRANSLATIONS = {
   "proj1.type":     { ar: "تعاونية أركان",                en: "Argan cooperative",        fr: "Coopérative d'argan" },
   "proj1.location": { ar: "تافراوت، سوس",                 en: "Tafraout, Souss",          fr: "Tafraout, Souss" },
   "proj1.desc":     {
-    ar: "موقع عرض احترافي يستهدف المشترين الأوروبيين — عربي وفرنسي وإنجليزي، مع زر طلب مباشر عبر واتساب.",
-    en: "Premium showcase website targeting European buyers — Arabic, French, and English, with WhatsApp direct order button.",
-    fr: "Site vitrine haut de gamme ciblant les acheteurs européens — arabe, français et anglais, avec bouton de commande directe WhatsApp."
+    ar: "موقع عرض احترافي يستهدف المشترين في جميع أنحاء المغرب — عربي وفرنسي وإنجليزي، مع زر طلب مباشر عبر واتساب.",
+    en: "Premium showcase website targeting buyers across Morocco — Arabic, French, and English, with WhatsApp direct order button.",
+    fr: "Site vitrine haut de gamme ciblant les acheteurs partout au Maroc — arabe, français et anglais, avec bouton de commande directe WhatsApp."
   },
 
-  "proj2.tag":      { ar: "تجارة إلكترونية · سوق الخليج", en: "E-commerce · Gulf market",       fr: "E-commerce · Marché du Golfe" },
+  "proj2.tag":      { ar: "تجارة إلكترونية · توصيل وطني", en: "E-commerce · Nationwide delivery",       fr: "E-commerce · Livraison nationale" },
   "proj2.type":     { ar: "تعاونية ماء الورد",             en: "Rose water cooperative",          fr: "Coopérative d'eau de rose" },
   "proj2.location": { ar: "قلعة مكونة، درعة",              en: "Kelaat M'Gouna, Draa",            fr: "Kelaat M'Gouna, Draa" },
   "proj2.desc":     {
-    ar: "منصة تجارة إلكترونية تركز على توزيع سوق الخليج — تصميم أولاً بالعربية مع إعداد شحن دولي.",
-    en: "E-commerce platform focused on Gulf market distribution — Arabic-first design with international shipping setup.",
-    fr: "Plateforme e-commerce axée sur la distribution du marché du Golfe — design orienté arabe avec configuration d'expédition internationale."
+    ar: "منصة تجارة إلكترونية تركز على التوزيع الوطني — تصميم أولاً بالعربية مع إعداد شحن لجميع مدن المغرب.",
+    en: "E-commerce platform focused on nationwide distribution — Arabic-first design with delivery setup to every city in Morocco.",
+    fr: "Plateforme e-commerce axée sur la distribution nationale — design orienté arabe avec configuration de livraison dans toutes les villes du Maroc."
   },
 
   "coming.tag":   { ar: "المزيد قادم",  en: "More coming",  fr: "Plus à venir" },
@@ -303,6 +303,7 @@ const MADAR_TRANSLATIONS = {
 const MADAR_LANG_KEY   = "madar-lang";
 const SUPPORTED_LANGS  = new Set(["ar", "en", "fr"]);
 let currentLang        = "ar";
+let langBootstrapped   = false; // first setLang() (page load) applies instantly, no transition
 
 function translate(key, lang) {
   lang = lang || currentLang;
@@ -339,12 +340,9 @@ function updateLangButtons(lang) {
   });
 }
 
-function setLang(lang) {
-  const next  = SUPPORTED_LANGS.has(lang) ? lang : "ar";
-  currentLang = next;
+function applyLang(next) {
   const isRTL = next === "ar";
-
-  try { localStorage.setItem(MADAR_LANG_KEY, next); } catch (_) {}
+  currentLang = next;
 
   document.documentElement.lang = next;
   document.documentElement.dir  = isRTL ? "rtl" : "ltr";
@@ -353,6 +351,29 @@ function setLang(lang) {
   applyTranslations(next);
 
   window.dispatchEvent(new CustomEvent("madar:langchange", { detail: { lang: next } }));
+}
+
+function setLang(lang) {
+  const next = SUPPORTED_LANGS.has(lang) ? lang : "ar";
+
+  try { localStorage.setItem(MADAR_LANG_KEY, next); } catch (_) {}
+
+  // First call is the initial page-load bootstrap — apply instantly so the
+  // page doesn't flash the wrong direction before settling.
+  if (!langBootstrapped) {
+    langBootstrapped = true;
+    applyLang(next);
+    return;
+  }
+
+  // Subsequent calls are user-triggered language switches: ease into the
+  // new direction instead of snapping. The 350ms delay lets the logo's
+  // spin (js/main.js switchLogo) swap its artwork before the layout flips.
+  document.body.classList.add("lang-transitioning");
+  setTimeout(() => applyLang(next), 350);
+  setTimeout(() => {
+    document.body.classList.remove("lang-transitioning");
+  }, 400);
 }
 
 function initLang() {
