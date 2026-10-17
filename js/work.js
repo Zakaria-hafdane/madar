@@ -40,26 +40,6 @@ const projects = [
       { n: '3', l: 'Languages' },
       { n: 'MA', l: 'Markets' },
     ]
-  },
-  {
-    title: 'Kelaat Rose',
-    tag: 'E-commerce · Nationwide delivery',
-    type: 'Rose water cooperative',
-    location: "Kelaat M'Gouna, Draa",
-    bgClass: 'rose-bg',
-    previewUrl: null,
-    desc: 'E-commerce platform built for nationwide distribution across Morocco. Arabic-first RTL design with delivery setup to every city and WhatsApp ordering in Arabic.',
-    features: [
-      { label: 'Type', value: 'E-commerce' },
-      { label: 'Languages', value: 'Arabic · French' },
-      { label: 'Target market', value: 'Morocco' },
-      { label: 'Layout', value: 'Arabic-first (RTL)' },
-    ],
-    stats: [
-      { n: '5', l: 'Products listed' },
-      { n: 'RTL', l: 'Arabic-first design' },
-      { n: 'MA', l: 'Markets' },
-    ]
   }
 ];
 

@@ -275,15 +275,6 @@ const MADAR_TRANSLATIONS = {
     fr: "Site vitrine haut de gamme ciblant les acheteurs partout au Maroc — arabe, français et anglais, avec bouton de commande directe WhatsApp."
   },
 
-  "proj2.tag":      { ar: "تجارة إلكترونية · توصيل وطني", en: "E-commerce · Nationwide delivery",       fr: "E-commerce · Livraison nationale" },
-  "proj2.type":     { ar: "تعاونية ماء الورد",             en: "Rose water cooperative",          fr: "Coopérative d'eau de rose" },
-  "proj2.location": { ar: "قلعة مكونة، درعة",              en: "Kelaat M'Gouna, Draa",            fr: "Kelaat M'Gouna, Draa" },
-  "proj2.desc":     {
-    ar: "منصة تجارة إلكترونية تركز على التوزيع الوطني — تصميم أولاً بالعربية مع إعداد شحن لجميع مدن المغرب.",
-    en: "E-commerce platform focused on nationwide distribution — Arabic-first design with delivery setup to every city in Morocco.",
-    fr: "Plateforme e-commerce axée sur la distribution nationale — design orienté arabe avec configuration de livraison dans toutes les villes du Maroc."
-  },
-
   "coming.tag":   { ar: "المزيد قادم",  en: "More coming",  fr: "Plus à venir" },
   "coming.title": {
     ar: "تعاونيتك<br>قد تكون التالية",

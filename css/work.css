@@ -29,7 +29,8 @@
   transition: border-color var(--transition), transform var(--transition);
 }
 .work-card:hover { border-color: var(--y-border); transform: translateY(-4px); }
-.work-card:first-child { grid-column: 1 / -1; }
+.work-card:first-child,
+.work-card:last-child:nth-child(even) { grid-column: 1 / -1; }
 
 .work-img {
   height: 320px; position: relative; overflow: hidden;
