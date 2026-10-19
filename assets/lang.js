@@ -1,12 +1,12 @@
 const TRANSLATIONS = {
   "meta.home.title": {
-    en: "Arkan",
-    fr: "Arkan",
+    en: "Argan",
+    fr: "Argan",
     ar: "\u0623\u0631\u0643\u0627\u0646"
   },
   "meta.products.title": {
-    en: "Arkan Products",
-    fr: "Produits Arkan",
+    en: "Argan Products",
+    fr: "Produits Argan",
     ar: "\u0645\u0646\u062a\u062c\u0627\u062a \u0623\u0631\u0643\u0627\u0646"
   },
 
@@ -309,8 +309,8 @@ const TRANSLATIONS = {
   },
 
   "footer.main": {
-    en: "Arkan Cooperative \u00b7 Souss-Massa \u00b7 Morocco",
-    fr: "Cooperative Arkan \u00b7 Souss-Massa \u00b7 Maroc",
+    en: "Argan Cooperative \u00b7 Souss-Massa \u00b7 Morocco",
+    fr: "Cooperative Argan \u00b7 Souss-Massa \u00b7 Maroc",
     ar: "\u062a\u0639\u0627\u0648\u0646\u064a\u0629 \u0623\u0631\u0643\u0627\u0646 \u00b7 \u0633\u0648\u0633 \u0645\u0627\u0633\u0629 \u00b7 \u0627\u0644\u0645\u063a\u0631\u0628"
   },
   "cart.label": {
@@ -421,13 +421,13 @@ const TRANSLATIONS = {
   "pp10.note": { en: "Best value size", fr: "Meilleur rapport format-prix", ar: "\u0623\u0641\u0636\u0644 \u0642\u064a\u0645\u0629" },
 
   "order.default": {
-    en: "Hello Arkan, I want to place an order.",
-    fr: "Bonjour Arkan, je veux passer une commande.",
+    en: "Hello Argan, I want to place an order.",
+    fr: "Bonjour Argan, je veux passer une commande.",
     ar: "\u0645\u0631\u062d\u0628\u0627 \u0623\u0631\u0643\u0627\u0646\u060c \u0623\u0631\u064a\u062f \u062a\u0642\u062f\u064a\u0645 \u0637\u0644\u0628."
   },
   "order.intro": {
-    en: "Hello Arkan, I want to order:",
-    fr: "Bonjour Arkan, je veux commander :",
+    en: "Hello Argan, I want to order:",
+    fr: "Bonjour Argan, je veux commander :",
     ar: "\u0645\u0631\u062d\u0628\u0627 \u0623\u0631\u0643\u0627\u0646\u060c \u0623\u0631\u064a\u062f \u0637\u0644\u0628 \u0627\u0644\u0645\u0646\u062a\u062c\u0627\u062a \u0627\u0644\u062a\u0627\u0644\u064a\u0629:"
   },
   "order.total": {
