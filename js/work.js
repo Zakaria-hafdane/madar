@@ -22,7 +22,7 @@ const projects = [
     ]
   },
   {
-    title: 'Arkan',
+    title: 'Argan',
     tag: 'Showcase · Premium light theme',
     type: 'Argan oil cooperative',
     location: 'Souss-Massa, Morocco',
